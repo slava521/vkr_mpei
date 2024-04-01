@@ -3,7 +3,7 @@
     "concurrently": "^8.2.2"
   },
   "scripts": {
-    "dev": "concurrently \"cd backend && cd weather_mpei && python manage.py runserver --insecure\" \"cd frontend && npm run dev\"",
+    "dev": "concurrently \"cd backend && cd weather_mpei && python manage.py runserver 7000 --insecure\" \"cd frontend && npm run dev\"",
     "install:back": "cd backend && pip install -r requirements.txt -t .pip",
     "install:front": "cd frontend && npm i",
     "postinstall": "npm run install:back && npm run install:front"
