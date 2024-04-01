@@ -1,5 +1,11 @@
 {
   "dependencies": {
     "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"cd backend && cd weather_mpei && python manage.py runserver --insecure\" \"cd frontend && npm run dev\"",
+    "install:back": "cd backend && pip install -r requirements.txt",
+    "install:front": "cd backend && npm i",
+    "postinstall": "npm run install:back && npm run install:front"
   }
 }
