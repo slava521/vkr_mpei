@@ -4,8 +4,8 @@
   },
   "scripts": {
     "dev": "concurrently \"cd backend && cd weather_mpei && python manage.py runserver --insecure\" \"cd frontend && npm run dev\"",
-    "install:back": "cd backend && pip install -r requirements.txt",
-    "install:front": "cd backend && npm i",
+    "install:back": "cd backend && pip install -r requirements.txt -t .pip",
+    "install:front": "cd frontend && npm i",
     "postinstall": "npm run install:back && npm run install:front"
   }
 }
