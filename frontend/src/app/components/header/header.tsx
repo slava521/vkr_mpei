@@ -1,19 +1,23 @@
 import classes from "./header.module.scss";
 import NavLinks from "@/app/components/navLinks/navLinks";
+import {FC} from "react";
+import AuthButtons from "@/app/components/authButtons/authButtons";
+import Container from "@/app/components/ui/container/container";
 
-const Header = () => {
+const Header:FC = () => {
+    const isAuthenticated = false //TODO авторизация
 
     return (
         <header className={classes.header}>
-            <div>
+            <Container>
                 <div className={classes.header__body}>
                     <div className={classes.header__logo}>
-                        <img/>
+                        <img src='/logompei.png' alt='MPEI'/>
                     </div>
-                    <NavLinks/>
-                    <div></div>
+                    <NavLinks isAuthenticated={isAuthenticated}/>
+                    <AuthButtons isAuthenticated={isAuthenticated}/>
                 </div>
-            </div>
+            </Container>
         </header>
     );
 };

@@ -1,0 +1,43 @@
+.authButtons {
+    position: relative;
+    z-index: 2;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-40%);
+        left: -15px;
+    }
+
+    &__btn {
+        padding: 7px 12px;
+        border-radius: 15px;
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+
+        &__logout {
+            padding: 5px 10px;
+            border: 2px solid #efeff5;
+            position: relative;
+            background: transparent;
+            color: #efeff5;
+
+            &:hover {
+                background: #7668cb;
+                border-color: #7668cb;
+            }
+        }
+
+        &__link {
+            background: #7668cb;
+
+            &:hover {
+	            background: #8c7ede;
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@
 import classes from "./navLinks.module.scss";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
+import {FC} from "react";
 
 type links = {
     name: string,
@@ -17,40 +18,48 @@ const LINKS: links = [
     },
     {
         name: 'Данные с метеостанции',
-        mainLink: '/meteo-data',
-        graphLink: '/meteo-data/chart'
+        mainLink: '/meteo',
+        graphLink: '/meteo/chart'
     },
     {
         name: 'Данные с ветряного модуля',
-        mainLink: '/wind-data',
-        graphLink: '/wind-data/chart'
+        mainLink: '/wind',
+        graphLink: '/wind/chart'
     },
     {
         name: 'Данные с инвертора',
-        mainLink: '/invertor-data',
-        graphLink: '/invertor-data/chart'
+        mainLink: '/invertor',
+        graphLink: '/invertor/chart'
     }
 ]
 
-const NavLinks = () => {
+type Props = {
+    isAuthenticated: boolean
+}
+
+const NavLinks: FC<Props> = ({isAuthenticated}) => {
     const pathname = usePathname()
-    console.log(pathname)
 
     return (
         <nav className={classes.nav}>
             <ul className={classes.nav__list}>
                 {LINKS.map(link => {
                     const isCurrentPage = link.mainLink === pathname || link.graphLink === pathname
+
                     return (
                         <li key={link.mainLink}>
                             <Link
-                                className={`${classes.nav__link} ${link.graphLink ? classes.nav__link__sub : ''} ${isCurrentPage ? classes.nav__link__active : ''}`}
+                                className={
+                                    `${classes.nav__link} ${
+                                        !!link.graphLink && isAuthenticated ? classes.nav__link__sub : ''
+                                    } ${isCurrentPage ? classes.nav__link__active : ''}`
+                                }
                                 href={link.mainLink}
                             >
                                 {link.name}
                                 <span></span>
                             </Link>
-                            {link.graphLink && (
+                            {!!link.graphLink && isAuthenticated && (
                                 <ul className={classes.nav__sub_list}>
                                     <li>
                                         <Link href={link.mainLink} className={classes.nav__sub_list__link}>
