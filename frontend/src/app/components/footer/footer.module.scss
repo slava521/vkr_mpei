@@ -1,0 +1,42 @@
+.footer {
+    background: #222127;
+    margin-top: 25px;
+
+    &__body {
+        height: 64px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--left {
+            display: flex;
+            gap: 7px;
+        }
+
+        &--right {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__logo {
+        height: 100%;
+        width: 58px;
+        padding: 3px 0;
+        position: relative;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}

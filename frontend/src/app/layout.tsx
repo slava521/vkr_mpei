@@ -3,6 +3,7 @@ import React from "react";
 import './globals.scss'
 import classes from "./layout.module.scss";
 import Header from "@/app/components/header/header";
+import Footer from "@/app/components/footer/footer";
 
 export const metadata: Metadata = {
     title: "Метеоданные НИУ МЭИ"
@@ -22,8 +23,7 @@ export default function RootLayout(
             <main className={classes.main}>
                 {children}
             </main>
-            <div>
-            </div>
+            <Footer/>
         </div>
         </body>
         </html>

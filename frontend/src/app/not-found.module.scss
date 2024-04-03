@@ -1,0 +1,12 @@
+.error {
+    text-align: center;
+
+    &__header {
+        margin-top: 15vh;
+        font-size: 96px;
+    }
+
+    &__text {
+	    font-size: 24px;
+    }
+}
