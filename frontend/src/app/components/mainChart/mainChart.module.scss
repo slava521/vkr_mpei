@@ -1,0 +1,47 @@
+.mainChart {
+    height: 350px;
+    width: 50%;
+    margin-top: 30px;
+    padding: 0 5px;
+
+    &__title {
+        text-align: center;
+        margin-bottom: 5px;
+        width: 100%;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    &__bg {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #333;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        z-index: 2;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+
+        &__link {
+            transition: all 0.2s ease 0s;
+
+            &:hover {
+                color: #978be4;
+            }
+
+            &__active {
+                cursor: default;
+                pointer-events: none;
+                color: #978be4;
+            }
+        }
+    }
+}
