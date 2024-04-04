@@ -1,0 +1,9 @@
+.chart {
+    flex: 1 1 auto;
+    width: 50%;
+
+    &__canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
