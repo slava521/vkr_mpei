@@ -1,0 +1,52 @@
+.input {
+    position: relative;
+    margin-bottom: 10px;
+    width: 100%;
+
+    &__label {
+        position: absolute;
+        top: calc(50% - 7px);
+        left: 0;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    &__field {
+        font-size: 16px;
+        padding: 20px 0px 10px;
+        height: 56px;
+        border: none;
+        border-bottom: solid 2px #333;
+        background: inherit;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+        font-weight: 400;
+        -webkit-appearance: none;
+        color: #efeff5;
+        margin-right: 25px;
+        display: flex;
+
+        &[type=datetime-local]::-webkit-calendar-picker-indicator {
+            filter: drop-shadow(0 0 2px white);
+        }
+
+        &:last-child {
+            margin: 0;
+        }
+
+        &:focus {
+            border-bottom: solid 2px #7668cb;
+            outline: 0;
+            box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
+        }
+
+        &:not(:placeholder-shown) {
+            padding: 28px 0 4px 0;
+
+            & + label {
+                transform: translateY(-10px);
+                opacity: 0.8;
+            }
+        }
+    }
+}

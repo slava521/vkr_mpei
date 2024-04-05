@@ -1,0 +1,9 @@
+.tableForm {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__inputs {
+        display: flex;
+    }
+}

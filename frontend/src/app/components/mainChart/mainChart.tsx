@@ -133,7 +133,7 @@ const test = {
 }
 
 type Props = {
-    title: string, //TODO добавить ссылки
+    title: string,
     apiLink?: string
 }
 
