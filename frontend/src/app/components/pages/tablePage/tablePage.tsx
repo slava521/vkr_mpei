@@ -17,8 +17,8 @@ const TablePage:FC<Props> = ({title, tableCols, tableData}) => {
         <Container title={title}>
             <form className={classes.tableForm}>
                 <div className={classes.tableForm__inputs}>
-                    <Input label='Начальная дата:' inputType='datetime-local'/>
-                    <Input label='Конечная дата:' inputType='datetime-local'/>
+                    <Input name='date_from' label='Начальная дата:' inputType='datetime-local'/>
+                    <Input name='date_to' label='Конечная дата:' inputType='datetime-local'/>
                 </div>
                 <Button buttonType='reset' text='Сброс'/>
                 <Button buttonType='submit' text='Поиск'/>

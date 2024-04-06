@@ -1,4 +1,4 @@
-import {links, TableCols} from "@/app/shared/types/types";
+import {Links, TableCols} from "@/app/shared/types/types";
 
 export const METEO_TABLE_COLS:TableCols = [
     {
@@ -177,7 +177,7 @@ export const INVERTOR_TABLE_COLS:TableCols = [
     }
 ]
 
-export const LINKS: links = [
+export const LINKS: Links = [
     {
         name: 'Главная',
         mainLink: '/'

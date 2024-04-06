@@ -9,6 +9,8 @@
         left: 0;
         opacity: 0;
         transition: all 0.3s ease;
+        padding-left: 44px;
+        cursor: text;
     }
 
     &__field {
@@ -50,5 +52,44 @@
                 opacity: 0.8;
             }
         }
+
+        &:-webkit-autofill {
+            -webkit-text-fill-color: #efeff5 !important;
+            -webkit-box-shadow: inset 0 0 0 30px #333 !important;
+
+            & + label {
+                transform: translateY(-10px);
+                opacity: 0.8;
+            }
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 56px;
+        width: 44px;
+        display: flex;
+
+        & img {
+            height: 30px;
+            width: 30px;
+            margin: auto;
+            opacity: 0.15;
+            fill: #efeff5;
+            transition: all 0.3s ease;
+            filter: none;
+        }
+    }
+
+    &__icon + &__label {
+        padding-left: 44px;
+    }
+
+    &__icon + &__field {
+        width: calc(100% - 44px);
+        margin-left: auto;
+        margin-right: 0;
     }
 }

@@ -3,12 +3,13 @@ import classes from "./button.module.scss";
 
 type Props = {
     buttonType: 'reset' | 'submit' | 'button',
-    text: string
+    text: string,
+    right?: boolean
 }
 
-const Button: FC<Props> = memo(({buttonType, text}) => {
+const Button: FC<Props> = memo(({buttonType, text, right}) => {
     return (
-        <input type={buttonType} className={classes.button} value={text}/>
+        <input type={buttonType} className={`${classes.button} ${right ? classes['button--right'] : ''}`} value={text}/>
     );
 });
 

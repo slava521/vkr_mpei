@@ -5,8 +5,14 @@ export type TableCols = {
 
 export type TableData = Record<string, number>[]
 
-export type links = {
+export type Links = {
     name: string,
     mainLink: string,
     graphLink?: string
+}[]
+
+export type InputsType = {
+    id: string,
+    type: 'text' | 'password',
+    placeholder: string
 }[]
