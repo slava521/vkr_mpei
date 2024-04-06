@@ -1,4 +1,4 @@
-import TablePage from "@/app/pages/tablePage/tablePage";
+import TablePage from "@/app/components/pages/tablePage/tablePage";
 import {WIND_TABLE_COLS} from "@/app/shared/consts/consts";
 
 const Page = () => {
