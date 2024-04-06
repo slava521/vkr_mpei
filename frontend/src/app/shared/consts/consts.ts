@@ -1,4 +1,4 @@
-import {TableCols} from "@/app/shared/types/types";
+import {links, TableCols} from "@/app/shared/types/types";
 
 export const METEO_TABLE_COLS:TableCols = [
     {
@@ -174,5 +174,27 @@ export const INVERTOR_TABLE_COLS:TableCols = [
     {
         id: 'energy_total',
         description: 'общая энергия (кВт*ч) за 1 сек',
+    }
+]
+
+export const LINKS: links = [
+    {
+        name: 'Главная',
+        mainLink: '/'
+    },
+    {
+        name: 'Данные с метеостанции',
+        mainLink: '/meteo',
+        graphLink: '/meteo/chart'
+    },
+    {
+        name: 'Данные с ветряного модуля',
+        mainLink: '/wind',
+        graphLink: '/wind/chart'
+    },
+    {
+        name: 'Данные с инвертора',
+        mainLink: '/invertor',
+        graphLink: '/invertor/chart'
     }
 ]

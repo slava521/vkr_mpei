@@ -4,34 +4,7 @@ import classes from "./navLinks.module.scss";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {FC} from "react";
-
-type links = {
-    name: string,
-    mainLink: string,
-    graphLink?: string
-}[]
-
-const LINKS: links = [
-    {
-        name: 'Главная',
-        mainLink: '/'
-    },
-    {
-        name: 'Данные с метеостанции',
-        mainLink: '/meteo',
-        graphLink: '/meteo/chart'
-    },
-    {
-        name: 'Данные с ветряного модуля',
-        mainLink: '/wind',
-        graphLink: '/wind/chart'
-    },
-    {
-        name: 'Данные с инвертора',
-        mainLink: '/invertor',
-        graphLink: '/invertor/chart'
-    }
-]
+import {LINKS} from "@/app/shared/consts/consts";
 
 type Props = {
     isAuthenticated: boolean
