@@ -16,7 +16,7 @@ const Table: FC<Props> = ({cols, data}) => {
                 <th className={`${classes.table__col} ${classes.table__col__header}`}>№</th>
                 <th className={`${classes.table__col} ${classes.table__col__header}`}>Дата</th>
                 {cols.map((col) => (
-                    <th className={`${classes.table__col} ${classes.table__col__header}`}>
+                    <th key={col.id} className={`${classes.table__col} ${classes.table__col__header}`}>
                         {col.id}
                         <div className={classes.table__col__header__description}>
                             {col.description}
@@ -25,11 +25,11 @@ const Table: FC<Props> = ({cols, data}) => {
                 ))}
             </tr>
             {data.map((row) => (
-                <tr className={classes.table__row}>
+                <tr key={row.id} className={classes.table__row}>
                     <td className={classes.table__col}>{row.id}</td>
                     <td className={classes.table__col}>{row.date}</td>
                     {cols.map((col)=>(
-                        <td className={classes.table__col}>{row[col.id]}</td>
+                        <td key={col.id} className={classes.table__col}>{row[col.id]}</td>
                     ))}
                 </tr>
             ))}
