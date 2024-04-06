@@ -1,8 +1,9 @@
 import TablePage from "@/app/pages/tablePage/tablePage";
+import {METEO_TABLE_COLS} from "@/app/shared/consts/consts";
 
 const Page = () => {
     return (
-        <TablePage title='Таблица метеорологических данных'/>
+        <TablePage tableCols={METEO_TABLE_COLS} tableData={[]} title='Таблица метеорологических данных'/>
     );
 };
 
