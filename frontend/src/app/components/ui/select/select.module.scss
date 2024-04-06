@@ -1,0 +1,22 @@
+.select {
+    font-size: 16px;
+    padding: 10px 0;
+    height: 56px;
+    min-width: 100px;
+    border: none;
+    border-bottom: solid 2px #333;
+    background: inherit;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    color: #efeff5;
+    list-style: none;
+
+    &:focus-visible {
+        border-bottom: solid 2px #7668cb;
+        outline: 0;
+    }
+
+    &__option {
+        background: #333;
+    }
+}
