@@ -9,7 +9,6 @@
         left: 0;
         opacity: 0;
         transition: all 0.3s ease;
-        padding-left: 44px;
         cursor: text;
     }
 
@@ -83,7 +82,7 @@
         }
     }
 
-    &__icon + &__label {
+    &__icon ~ &__label {
         padding-left: 44px;
     }
 
