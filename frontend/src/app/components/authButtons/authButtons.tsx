@@ -19,7 +19,7 @@ const AuthButtons: FC<Props> = ({isAuthenticated}) => {
             </>
             }
             {!isAuthenticated && <>
-                <Link href='/auth' className={`${classes.authButtons__btn} ${classes.authButtons__btn__link}`}>
+                <Link href='/login' className={`${classes.authButtons__btn} ${classes.authButtons__btn__link}`}>
                     Войти
                 </Link>
                 <Link href='/reg' className={`${classes.authButtons__btn} ${classes.authButtons__btn__link}`}>
