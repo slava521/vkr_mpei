@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "dev": "cd weather_mpei && python manage.py runserver --insecure",
+    "install": "py -m venv venv && venv\\Scripts\\activate.bat && pip install -r requirements.txt"
+  }
+}
