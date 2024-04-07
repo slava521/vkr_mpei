@@ -14,7 +14,7 @@ const Checkbox:FC<Props> = ({label, name}) => {
     return (
         <div className={classes.checkbox}>
             <input id={id} type="checkbox" name={name} className={classes.checkbox__input}/>
-            <label htmlFor={id} className={classes.checkbox__label}>{label}</label>
+            <label htmlFor={id} className={classes.checkbox__input__label}>{label}</label>
         </div>
     );
 };
