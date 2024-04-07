@@ -161,7 +161,7 @@ const MainChart: FC<Props> = ({title, apiLink}) => {
         <div className={classes.mainChart}>
             <h3 className={classes.mainChart__title}>{title}</h3>
             <div className={classes.mainChart__bg}>
-                <Chart labels={test.labels} values={test.values} param={'TA'} colors={test.colors}/>
+                <Chart labels={test.labels} values={test.values} param={'TA'} colors={test.colors} width={500}/>
                 <div className={classes.mainChart__nav}>
                     <span>Период:</span>
                     {links.map(link => (

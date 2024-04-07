@@ -9,6 +9,7 @@ import {Params} from "@/app/shared/types/types";
 import Checkbox from "@/app/components/ui/checkbox/checkbox";
 import RadioButton from "@/app/components/ui/radioButton/radioButton";
 import Button from "@/app/components/ui/button/button";
+import Chart from "@/app/components/chart/chart";
 
 type Props = {
     title: string,
@@ -54,6 +55,20 @@ const ChartPage: FC<Props> = ({title, params}) => {
                             </div>
                             <Button buttonType='submit' text='Построить график' right/>
                         </form>
+                    </div>
+                </div>
+                <div className={classes.chartPage__main}>
+                    <div className={classes.chartPage__main__chart}>
+                        <div
+                            className={`${classes.chartPage__main__chart__header} ${
+                                true ? classes.chartPage__main__chart__header__active : '' // TODO добавить обработку
+                            }`}
+                        >
+                            График параметра
+                        </div>
+                        <div className={classes.chartPage__main__chart__bg}>
+                            <Chart labels={[]} values={[]} param={''} colors={[]} width={700}/>
+                        </div>
                     </div>
                 </div>
             </div>

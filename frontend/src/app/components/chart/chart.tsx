@@ -53,10 +53,11 @@ type Props = {
     labels: string[],
     values: number[],
     param: string,
-    colors: string[]
+    colors: string[],
+    width: number
 }
 
-const Chart: FC<Props> = ({labels, values, param, colors}) => {
+const Chart: FC<Props> = ({labels, values, param, colors, width}) => {
     const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null)
     const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null)
     const [gradient, setGradient] = useState<CanvasGradient | undefined>(undefined)
@@ -70,7 +71,7 @@ const Chart: FC<Props> = ({labels, values, param, colors}) => {
     }, [canvas])
 
     useEffect(() => {
-        ctx && setGradient(ctx.createLinearGradient(0, 0, 500, 0));
+        ctx && setGradient(ctx.createLinearGradient(0, 0, width, 0));
     }, [ctx])
 
     gradient && colors.forEach((color, index) => {
