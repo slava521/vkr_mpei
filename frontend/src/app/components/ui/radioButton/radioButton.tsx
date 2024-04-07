@@ -15,7 +15,7 @@ const RadioButton:FC<Props> = ({value, name, label, checked}) => {
 
     return (
         <div>
-            <input id={id} type="radio" className={classes.radioButton} name={name} value={value} checked={!!checked}/>
+            <input id={id} type="radio" className={classes.radioButton} name={name} value={value} defaultChecked={!!checked}/>
             <label htmlFor={id} className={classes.radioButton__label}>{label}</label>
         </div>
     );

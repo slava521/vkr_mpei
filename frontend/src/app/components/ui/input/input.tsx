@@ -8,8 +8,6 @@ type Props = {
     label: string,
     inputType: HTMLInputTypeAttribute,
     name: string,
-    placeholder?: string,
-    inputId?: string,
     iconSrc?: string
 }
 
@@ -18,8 +16,6 @@ const Input: FC<Props> = (
         label,
         inputType,
         name,
-        placeholder,
-        inputId,
         iconSrc
     }) => {
     const id = useId()
@@ -32,13 +28,13 @@ const Input: FC<Props> = (
                 </div>
             )}
             <input
-                id={inputId ?? id}
+                id={id}
                 className={classes.input__field}
                 name={name}
                 type={inputType}
-                placeholder={placeholder}
+                placeholder={label}
             />
-            <label htmlFor={inputId ?? id} className={classes.input__label}>{label}</label>
+            <label htmlFor={id} className={classes.input__label}>{label}</label>
         </div>
     );
 };

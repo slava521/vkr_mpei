@@ -4,11 +4,11 @@ import classes from "./tablePage.module.scss";
 import Input from "@/app/components/ui/input/input";
 import Button from "@/app/components/ui/button/button";
 import Table from "@/app/components/table/table";
-import {TableCols, TableData} from "@/app/shared/types/types";
+import {Params, TableData} from "@/app/shared/types/types";
 
 type Props = {
     title: string,
-    tableCols: TableCols
+    tableCols: Params
     tableData: TableData
 }
 

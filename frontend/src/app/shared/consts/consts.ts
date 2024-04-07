@@ -1,6 +1,6 @@
-import {Links, TableCols} from "@/app/shared/types/types";
+import {Links, Params} from "@/app/shared/types/types";
 
-export const METEO_TABLE_COLS:TableCols = [
+export const METEO_TABLE_COLS:Params = [
     {
         id: 'TA',
         description: 'среднее значение температуры за 1 минуту (°C)',
@@ -67,7 +67,7 @@ export const METEO_TABLE_COLS:TableCols = [
     }
 ]
 
-export const WIND_TABLE_COLS:TableCols = [
+export const WIND_TABLE_COLS:Params = [
 {
         id: 'WS1AVG',
         description: 'скорость ветра (м/с) за 3 сек',
@@ -126,7 +126,7 @@ export const WIND_TABLE_COLS:TableCols = [
     }
 ]
 
-export const INVERTOR_TABLE_COLS:TableCols = [
+export const INVERTOR_TABLE_COLS:Params = [
     {
         id: 'pv1_input_power',
         description: 'входная мощность pv1 (Вт) за 1 сек',

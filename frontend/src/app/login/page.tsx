@@ -3,13 +3,13 @@ import {InputsType} from "@/app/shared/types/types";
 
 const INPUTS: InputsType = [
     {
-        placeholder: 'Имя пользователя',
-        id: 'username-field',
+        label: 'Имя пользователя',
+        name: 'username-field',
         type: 'text',
     },
     {
-        placeholder: 'Пароль',
-        id: 'password',
+        label: 'Пароль',
+        name: 'password',
         type: 'password',
     },
 ]

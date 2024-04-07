@@ -24,10 +24,8 @@ const AuthPage:FC<Props> = ({title, inputs, submitName, link, linkName}) => {
                         <Input
                             key={input.id}
                             inputType={input.type}
-                            name={input.id}
-                            inputId={input.id}
-                            label={input.placeholder}
-                            placeholder={input.placeholder}
+                            name={input.name}
+                            label={input.label}
                             iconSrc={input.type === 'text' ? '/mailIcon.svg' : '/passwordIcon.svg'}
                         />
                     ))}

@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import classes from "./table.module.scss";
-import {TableCols, TableData} from '@/app/shared/types/types';
+import {Params, TableData} from '@/app/shared/types/types';
 
 type Props = {
-    cols: TableCols
+    cols: Params
     data: TableData
 }
 

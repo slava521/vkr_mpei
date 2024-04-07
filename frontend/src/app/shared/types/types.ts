@@ -1,4 +1,4 @@
-export type TableCols = {
+export type Params = {
     id: string,
     description: string
 }[]
@@ -12,7 +12,7 @@ export type Links = {
 }[]
 
 export type InputsType = {
-    id: string,
+    name: string,
     type: 'text' | 'password',
-    placeholder: string
+    label: string
 }[]

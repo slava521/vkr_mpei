@@ -5,7 +5,7 @@ import AuthButtons from "@/app/components/authButtons/authButtons";
 import Container from "@/app/components/ui/container/container";
 
 const Header:FC = () => {
-    const isAuthenticated = false //TODO авторизация
+    const isAuthenticated = true //TODO авторизация
 
     return (
         <header className={classes.header}>
