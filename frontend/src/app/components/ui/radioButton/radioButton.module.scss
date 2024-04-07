@@ -1,0 +1,38 @@
+.radioButton {
+    display: none;
+
+    &__label {
+        display: inline-flex;
+        font-size: 16px;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+            content: '';
+            align-self: flex-start;
+            flex: 0 0 24px;
+            height: 24px;
+            background: #efeff5;
+            border-radius: 50%;
+            margin: 0 10px 0 0;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 16px;
+            height: 16px;
+            background: #8c7ede;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: all 0.3s ease 0s;
+        }
+    }
+
+    &:checked + &__label:after {
+        transform: scale(1);
+    }
+}
