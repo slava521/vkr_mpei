@@ -5,6 +5,7 @@ from rest_framework.exceptions import ParseError
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
+from .constants import MeteoDataParams, WindDataParams, InvertorParams
 from .functions import date_filter, main_param_json
 from .models import MeteoData, Invertor, WindData
 from .serializers import MeteoDataSerializer, WindDataSerializer, InvertorSerializer
@@ -40,25 +41,20 @@ class InvertorAPIList(generics.ListAPIView):
         return date_filter(self.request, Invertor)
 
 
-class TemperatureAPIView(generics.RetrieveAPIView):
+class MeteoDataParamAPIView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
-        return main_param_json(MeteoData, 'TA', **kwargs)
+        return main_param_json(MeteoData, MeteoDataParams, request, **kwargs)
 
 
-class PressureAPIView(generics.RetrieveAPIView):
-
-    def get(self, request, *args, **kwargs):
-        return main_param_json(MeteoData, 'PA', **kwargs)
-
-
-class WindSpeedAPIView(generics.RetrieveAPIView):
+class WindDataParamAPIView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
-        return main_param_json(WindData, 'WS1AVG', **kwargs)
+        return main_param_json(WindData, WindDataParams, request, **kwargs)
 
 
-class HumidityAPIView(generics.RetrieveAPIView):
+class InvertorParamAPIView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
-        return main_param_json(MeteoData, 'RH', **kwargs)
+        return main_param_json(Invertor, InvertorParams, request, **kwargs)
+

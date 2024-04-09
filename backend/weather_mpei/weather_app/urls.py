@@ -1,14 +1,13 @@
 from django.urls import path
 
-from .views import MeteoAPIList, WindAPIList, InvertorAPIList, TemperatureAPIView, PressureAPIView, WindSpeedAPIView, \
-    HumidityAPIView
+from .views import (MeteoAPIList, WindAPIList, InvertorAPIList, MeteoDataParamAPIView, WindDataParamAPIView,
+                    InvertorParamAPIView)
 
 urlpatterns = [
     path('meteo/', MeteoAPIList.as_view()),
     path('wind/', WindAPIList.as_view()),
     path('invertor/', InvertorAPIList.as_view()),
-    path('temperature/<type>/', TemperatureAPIView.as_view()),
-    path('pressure/<type>/', PressureAPIView.as_view()),
-    path('wind-speed/<type>/', WindSpeedAPIView.as_view()),
-    path('humidity/<type>/', HumidityAPIView.as_view()),
+    path('meteo/<param>/', MeteoDataParamAPIView.as_view()),
+    path('wind/<param>/', WindDataParamAPIView.as_view()),
+    path('invertor/<param>/', InvertorParamAPIView.as_view()),
 ]
