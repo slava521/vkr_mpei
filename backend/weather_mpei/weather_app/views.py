@@ -1,9 +1,11 @@
 from datetime import datetime
 
 from rest_framework import generics
+from rest_framework.exceptions import ParseError
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 
-from .functions import date_filter
+from .functions import date_filter, main_param_json
 from .models import MeteoData, Invertor, WindData
 from .serializers import MeteoDataSerializer, WindDataSerializer, InvertorSerializer
 
@@ -36,3 +38,27 @@ class InvertorAPIList(generics.ListAPIView):
 
     def get_queryset(self):
         return date_filter(self.request, Invertor)
+
+
+class TemperatureAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return main_param_json(MeteoData, 'TA', **kwargs)
+
+
+class PressureAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return main_param_json(MeteoData, 'PA', **kwargs)
+
+
+class WindSpeedAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return main_param_json(WindData, 'WS1AVG', **kwargs)
+
+
+class HumidityAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return main_param_json(MeteoData, 'RH', **kwargs)
