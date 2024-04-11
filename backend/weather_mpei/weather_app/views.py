@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 
 from .constants import MeteoDataParams, WindDataParams, InvertorParams
 from .functions import date_filter, main_param_json, download_file_response
@@ -56,18 +57,21 @@ class InvertorParamAPIView(generics.RetrieveAPIView):
 
 
 class MeteoDataFileAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         return download_file_response(MeteoData, 'meteo', request, **kwargs)
 
 
 class WindDataFileAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         return download_file_response(WindData, 'wind', request, **kwargs)
 
 
 class InvertorFileAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         return download_file_response(Invertor, 'invertor', request, **kwargs)
