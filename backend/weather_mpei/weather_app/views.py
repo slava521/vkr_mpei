@@ -1,12 +1,8 @@
-from datetime import datetime
-
 from rest_framework import generics
-from rest_framework.exceptions import ParseError
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
 
 from .constants import MeteoDataParams, WindDataParams, InvertorParams
-from .functions import date_filter, main_param_json
+from .functions import date_filter, main_param_json, download_file_response
 from .models import MeteoData, Invertor, WindData
 from .serializers import MeteoDataSerializer, WindDataSerializer, InvertorSerializer
 
@@ -58,3 +54,20 @@ class InvertorParamAPIView(generics.RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         return main_param_json(Invertor, InvertorParams, request, **kwargs)
 
+
+class MeteoDataFileAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return download_file_response(MeteoData, 'meteo', request, **kwargs)
+
+
+class WindDataFileAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return download_file_response(WindData, 'wind', request, **kwargs)
+
+
+class InvertorFileAPIView(generics.RetrieveAPIView):
+
+    def get(self, request, *args, **kwargs):
+        return download_file_response(Invertor, 'invertor', request, **kwargs)
