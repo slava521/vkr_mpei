@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import (MeteoAPIList, WindAPIList, InvertorAPIList, MeteoDataParamAPIView, WindDataParamAPIView,
                     InvertorParamAPIView, MeteoDataFileAPIView, WindDataFileAPIView, InvertorFileAPIView)
@@ -13,4 +13,6 @@ urlpatterns = [
     path('meteo-file/<file_type>/', MeteoDataFileAPIView.as_view()),
     path('wind-file/<file_type>/', WindDataFileAPIView.as_view()),
     path('invertor-file/<file_type>/', InvertorFileAPIView.as_view()),
+    path('auth/', include('djoser.urls.base')),
+    path('auth/', include('djoser.urls.jwt'))
 ]
