@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'weather_app.apps.WeatherAppConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
     'djoser'
 ]
 
