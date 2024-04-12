@@ -30,6 +30,12 @@
                 background: #7668cb;
                 border-color: #7668cb;
             }
+
+            &__loading {
+                cursor: progress;
+                pointer-events: none;
+                background: #8c7ede;
+            }
         }
 
         &__link {

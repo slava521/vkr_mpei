@@ -1,10 +1,17 @@
+'use client'
+
 import AuthPage from "@/app/components/pages/authPage/authPage";
 import {InputsType} from "@/app/shared/types/types";
+import {userAPI} from "@/lib/services/UserService";
+import {useAppDispatch} from "@/lib/hooks";
+import {useRouter} from "next/navigation";
+import React from "react";
+import {setTokens} from "@/lib/reducers/userSlice";
 
 const INPUTS: InputsType = [
     {
         label: 'Имя пользователя',
-        name: 'username-field',
+        name: 'username',
         type: 'text',
     },
     {
@@ -15,6 +22,24 @@ const INPUTS: InputsType = [
 ]
 
 const Page = () => {
+    const [auth] = userAPI.useAuthUserMutation()
+    const dispatch = useAppDispatch()
+    const router = useRouter()
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.target as HTMLFormElement);
+        const username = formData.get('username') as string;
+        const password = formData.get('password') as string;
+        const authResult = await auth({
+            username, password
+        })
+        if (!('error' in authResult)) {
+            dispatch(setTokens(authResult.data))
+            router.push("/")
+        }
+    }
+
     return (
         <AuthPage
             title='Авторизация'
@@ -22,6 +47,7 @@ const Page = () => {
             submitName='Войти'
             link='/reg'
             linkName='Зарегистрироваться'
+            onSubmit={handleSubmit}
         />
     );
 };
