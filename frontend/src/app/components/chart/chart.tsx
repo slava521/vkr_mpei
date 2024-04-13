@@ -87,8 +87,8 @@ const Chart: FC<Props> = ({labels, values, param, colors, width}) => {
             backgroundColor: gradient,
             borderColor: [],
             borderWidth: 0,
-            tension: 0.1,
-            pointRadius: 0
+            tension: 0.2,
+            pointRadius: 1
         }]
     }
 
