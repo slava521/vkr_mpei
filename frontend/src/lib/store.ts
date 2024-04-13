@@ -13,6 +13,7 @@ import {userAPI} from "@/lib/services/UserService";
 import userReducer from './reducers/userSlice';
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
 import {PersistConfig} from "redux-persist/es/types";
+import {weatherAPI} from "@/lib/services/WeatherService";
 
 const createNoopStorage = () => {
   return {
@@ -41,7 +42,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     userReducer,
-    [userAPI.reducerPath]: userAPI.reducer
+    [userAPI.reducerPath]: userAPI.reducer,
+    [weatherAPI.reducerPath]: weatherAPI.reducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -53,7 +55,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(userAPI.middleware)
+        }).concat(userAPI.middleware).concat(weatherAPI.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>;

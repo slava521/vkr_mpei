@@ -74,7 +74,7 @@ const Chart: FC<Props> = ({labels, values, param, colors, width}) => {
         ctx && setGradient(ctx.createLinearGradient(0, 0, width, 0));
     }, [ctx])
 
-    gradient && colors.forEach((color, index) => {
+    gradient && colors && colors.forEach((color, index) => {
         gradient.addColorStop(index / (colors.length - 1), color);
     })
 
@@ -87,7 +87,7 @@ const Chart: FC<Props> = ({labels, values, param, colors, width}) => {
             backgroundColor: gradient,
             borderColor: [],
             borderWidth: 0,
-            tension: 0.3,
+            tension: 0.1,
             pointRadius: 0
         }]
     }

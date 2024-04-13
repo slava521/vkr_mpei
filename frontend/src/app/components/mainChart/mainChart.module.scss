@@ -31,7 +31,10 @@
         gap: 20px;
 
         &__link {
+            background: transparent;
             transition: all 0.2s ease 0s;
+            color: #efeff5;
+            cursor: pointer;
 
             &:hover {
                 color: #978be4;

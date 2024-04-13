@@ -198,3 +198,8 @@ export const LINKS: Links = [
         graphLink: '/invertor/chart'
     }
 ]
+
+export const TEMPERATURE_COLORS = ['#F5C05A', '#EB88B1', '#B965E4', '#8c7ede']
+export const PRESSURE_COLORS = [...TEMPERATURE_COLORS].reverse()
+export const WIND_SPEED_COLORS = ['#76FD1F', '#00C28F', '#167D87']
+export const HUMIDITY_COLORS = [...WIND_SPEED_COLORS].reverse()
