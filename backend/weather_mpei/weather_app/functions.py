@@ -13,16 +13,18 @@ from weather_mpei.settings import BASE_DIR
 def date_filter(request, model):
     date_from = request.query_params.get('date_from', default=None)
     date_to = request.query_params.get('date_to', default=None)
+    query_set = model.objects.all()
 
     if date_from is not None or date_to is not None:
         if date_from is None:
             date_start = datetime(1900, 1, 1, 0, 0, 0)
-            return model.objects.filter(date__range=(date_start, date_to))
-        if date_to is None:
+            query_set = model.objects.filter(date__range=(date_start, date_to))
+        elif date_to is None:
             date_now = datetime.now()
-            return model.objects.filter(date__range=(date_from, date_now))
-        return model.objects.filter(date__range=(date_from, date_to))
-    return model.objects.all()
+            query_set = model.objects.filter(date__range=(date_from, date_now))
+        else:
+            query_set = model.objects.filter(date__range=(date_from, date_to))
+    return query_set.order_by('date').reverse()
 
 
 def main_param_json(model, allowed_params, request, **kwargs):

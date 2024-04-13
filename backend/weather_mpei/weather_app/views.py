@@ -2,13 +2,13 @@ from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .constants import MeteoDataParams, WindDataParams, InvertorParams
 from .functions import date_filter, main_param_json, download_file_response
 from .models import MeteoData, Invertor, WindData
 from .serializers import MeteoDataSerializer, WindDataSerializer, InvertorSerializer
+
 
 class APIListPagination(PageNumberPagination):
     page_size = 20
