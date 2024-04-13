@@ -10,7 +10,8 @@ import {setAccessToken, setTokens} from "@/lib/reducers/userSlice";
 const AuthButtons: FC = () => {
     const {access, refresh} = useAppSelector(state => state.userReducer)
     const {isLoading: verifyLoading, error} = userAPI.useVerifyUserQuery({token: access}, {
-        pollingInterval: 60000
+        pollingInterval: 60000,
+        skip: !access
     })
     const {currentData: userData, isLoading: userDataLoading} = userAPI.useGetUserInformationQuery({access})
     const [logout, {isLoading: logoutLoading}] = userAPI.useLogoutUserMutation()
@@ -47,7 +48,7 @@ const AuthButtons: FC = () => {
 
     return (
         <div className={classes.authButtons}>
-            {!error && <>
+            {(!error && !!access) && <>
                 <div className={classes.authButtons__icon}>
                     <img src='/userIcon.svg' alt='User'/>
                 </div>
@@ -61,7 +62,7 @@ const AuthButtons: FC = () => {
                 </div>
             </>
             }
-            {!!error && <>
+            {(!!error || !access) && <>
                 <div className={classes.authButtons__loading}>
                     <Link href='/login' className={`${classes.authButtons__btn} ${classes.authButtons__btn__link} ${
                         verifyLoading ? classes.authButtons__btn__link__loading : ''
