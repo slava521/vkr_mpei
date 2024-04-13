@@ -3,7 +3,7 @@ export type Params = {
     description: string
 }[]
 
-export type TableData = Record<string, number>[]
+export type TableData = Record<string, string | number>[]
 
 export type Links = {
     name: string,

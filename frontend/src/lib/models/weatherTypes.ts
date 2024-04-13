@@ -7,7 +7,12 @@ export type TableRequestType = {
     dateTo: string,
 }
 
-export type TableResponseType = Record<string, string>[]
+export type TableResponseType = {
+    count: number,
+    next: string | null,
+    previous: string | null,
+    results: Record<string, string | number>[]
+}
 
 export type ChartRequestType = {
     endpoint: EndpointType
