@@ -42,19 +42,29 @@ def main_param_json(model, allowed_params, request, **kwargs):
     values = []
 
     length = len(ids)
-    limit = int(length / 40)
-    for i in range(40):
-        offset = i * limit + limit
-        if offset >= length:
-            offset = length - 1
-        current_values = model.objects.filter(id__range=(ids[i * limit]['id'], ids[offset]['id'])).values(param, 'date')
-        temp_sum = 0
-        for value in current_values:
-            temp_sum += float(value[param])
-        avg = temp_sum / len(current_values)
+    if length == 0:
+        return Response({'labels': labels, 'values': values})
 
-        labels.append(current_values[len(current_values) - 1]['date'].strftime('%d.%m.%Y %H:%M'))
-        values.append(avg)
+    limit = int(length / 40)
+    if limit != 0:
+        for i in range(40):
+            offset = i * limit + limit
+            if offset >= length:
+                offset = length - 1
+            current_values = model.objects.filter(id__range=(ids[i * limit]['id'], ids[offset]['id'])).values(param,
+                                                                                                              'date')
+            temp_sum = 0
+            for value in current_values:
+                temp_sum += float(value[param])
+            avg = temp_sum / len(current_values)
+
+            labels.append(current_values[len(current_values) - 1]['date'].strftime('%d.%m.%Y %H:%M'))
+            values.append(avg)
+    else:
+        for i in range(length):
+            current_value = model.objects.filter(id=ids[i]).values(param, 'date')
+            labels.append(current_value['date'].strftime('%d.%m.%Y %H:%M'))
+            values.append(current_value[param])
 
     return Response({'labels': labels, 'values': values})
 
