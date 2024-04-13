@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 import xlsxwriter
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
@@ -14,16 +15,22 @@ def date_filter(request, model):
     date_from = request.query_params.get('date_from', default=None)
     date_to = request.query_params.get('date_to', default=None)
     query_set = model.objects.all()
-
-    if date_from is not None or date_to is not None:
-        if date_from is None:
-            date_start = datetime(1900, 1, 1, 0, 0, 0)
-            query_set = model.objects.filter(date__range=(date_start, date_to))
-        elif date_to is None:
-            date_now = datetime.now()
-            query_set = model.objects.filter(date__range=(date_from, date_now))
-        else:
-            query_set = model.objects.filter(date__range=(date_from, date_to))
+    if date_from == "":
+        date_from = None
+    if date_to == "":
+        date_to = None
+    try:
+        if date_from is not None or date_to is not None:
+            if date_from is None:
+                date_start = datetime(1900, 1, 1, 0, 0, 0)
+                query_set = model.objects.filter(date__range=(date_start, date_to))
+            elif date_to is None:
+                date_now = datetime.now()
+                query_set = model.objects.filter(date__range=(date_from, date_now))
+            else:
+                query_set = model.objects.filter(date__range=(date_from, date_to))
+    except ValidationError as e:
+        raise ParseError(e.error_list)
     return query_set.order_by('date').reverse()
 
 
