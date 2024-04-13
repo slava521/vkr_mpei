@@ -32,18 +32,26 @@
             }
 
             &__loading {
-                cursor: progress;
                 pointer-events: none;
-                background: #8c7ede;
             }
         }
 
         &__link {
             background: #7668cb;
+            display: block;
 
             &:hover {
-	            background: #8c7ede;
+                background: #8c7ede;
+            }
+
+            &__loading {
+                pointer-events: none;
             }
         }
+    }
+
+    &__loading {
+        cursor: progress;
+        border-radius: 15px;
     }
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import classes from "./authPage.module.scss";
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import Input from "@/app/components/ui/input/input";
 import Button from "@/app/components/ui/button/button";
 import {InputsType} from "@/app/shared/types/types";
@@ -19,16 +19,19 @@ type Props = {
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void,
 }
 
-const AuthPage:FC<Props> = ({title, inputs, submitName, link, linkName, onSubmit}) => {
+const AuthPage: FC<Props> = ({title, inputs, submitName, link, linkName, onSubmit}) => {
     const router = useRouter()
-    const {access, refresh} = useAppSelector(state => state.userReducer)
-    const {isLoading, error} = userAPI.useVerifyUserQuery({token: access})
-    if (isLoading) {
-        return <div>Загрузка...</div>
-    }
-    if (!error) {
-        router.push('/')
-        return <div>Загрузка...</div>
+    const {access} = useAppSelector(state => state.userReducer)
+    const {isLoading, error, currentData: verifyData} = userAPI.useVerifyUserQuery({token: access})
+
+    useEffect(() => {
+        if (!error && verifyData !== undefined) {
+            router.push('/')
+        }
+    }, [error, verifyData])
+
+    if (isLoading && !error) {
+        return <div className={classes.authPage}>Загрузка...</div>
     }
 
     return (

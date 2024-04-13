@@ -5,8 +5,6 @@ import AuthButtons from "@/app/components/authButtons/authButtons";
 import Container from "@/app/components/ui/container/container";
 
 const Header:FC = () => {
-    const isAuthenticated = true //TODO авторизация
-
     return (
         <header className={classes.header}>
             <Container>
@@ -14,8 +12,8 @@ const Header:FC = () => {
                     <div className={classes.header__logo}>
                         <img src='/logompei.png' alt='MPEI'/>
                     </div>
-                    <NavLinks isAuthenticated={isAuthenticated}/>
-                    <AuthButtons isAuthenticated={isAuthenticated}/>
+                    <NavLinks/>
+                    <AuthButtons/>
                 </div>
             </Container>
         </header>

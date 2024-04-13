@@ -19,15 +19,15 @@ export default function RootLayout(
     return (
         <html lang="ru">
         <body>
-        <StoreProvider>
-            <div className={classes.wrapper}>
+        <div className={classes.wrapper}>
+            <StoreProvider>
                 <Header/>
                 <main className={classes.main}>
                     {children}
                 </main>
                 <Footer/>
-            </div>
-        </StoreProvider>
+            </StoreProvider>
+        </div>
         </body>
         </html>
     );

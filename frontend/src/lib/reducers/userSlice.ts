@@ -3,20 +3,19 @@ import {createSlice} from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        username: '',
         access: '',
         refresh: ''
     },
     reducers: {
-        setUsername: (state, action) => {
-            state.username = action.payload.username;
-        },
         setTokens: (state, action) => {
             state.access = action.payload.access;
             state.refresh = action.payload.refresh;
+        },
+        setAccessToken: (state, action) => {
+            state.access = action.payload.access;
         }
     },
 });
 
-export const { setUsername, setTokens } = userSlice.actions;
+export const {setTokens, setAccessToken} = userSlice.actions;
 export default userSlice.reducer;

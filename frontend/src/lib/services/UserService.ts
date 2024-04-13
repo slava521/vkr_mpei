@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
-    AccessQueryType,
+    AccessType,
     AuthQueryType,
     RefreshQueryType,
     RegisterQueryType, TokenQueryType,
@@ -14,7 +14,7 @@ export const userAPI = createApi({
         baseUrl: 'http://localhost:8000/api/v1/auth/'
     }),
     endpoints: (build)=> ({
-        registerUser: build.mutation<null, RegisterQueryType>({
+        registerUser: build.mutation<UserInformationType, RegisterQueryType>({
             query: (body) => ({
                 url: 'users/',
                 method: 'POST',
@@ -35,7 +35,7 @@ export const userAPI = createApi({
                 body
             })
         }),
-        refreshUser: build.mutation<UserType, RefreshQueryType>({
+        refreshUser: build.mutation<AccessType, RefreshQueryType>({
             query: (body) => ({
                 url: 'jwt/refresh/',
                 method: 'POST',
@@ -49,7 +49,7 @@ export const userAPI = createApi({
                 body
             })
         }),
-        getUserInformation: build.query<UserInformationType, AccessQueryType>({
+        getUserInformation: build.query<UserInformationType, AccessType>({
             query: (params) => ({
                 url: 'users/me/',
                 headers: {'Authorization': `Bearer ${params.access}`}

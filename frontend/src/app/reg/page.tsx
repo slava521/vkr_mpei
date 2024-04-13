@@ -4,7 +4,7 @@ import {InputsType} from "@/app/shared/types/types";
 import AuthPage from "@/app/components/pages/authPage/authPage";
 import React from "react";
 import {userAPI} from "@/lib/services/UserService";
-import {useAppDispatch, useAppSelector} from "@/lib/hooks";
+import {useAppDispatch} from "@/lib/hooks";
 import {setTokens} from "@/lib/reducers/userSlice";
 import {useRouter} from "next/navigation";
 
@@ -27,7 +27,7 @@ const INPUTS: InputsType = [
 ]
 
 const Page = () => {
-    const [register, {error}] = userAPI.useRegisterUserMutation()
+    const [register, {error}] = userAPI.useRegisterUserMutation() // TODO: добавить обработку ошибок
     const [auth] = userAPI.useAuthUserMutation()
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -38,8 +38,8 @@ const Page = () => {
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
         const rePassword = formData.get('re_password') as string;
-        const result = await register({username, password, re_password:rePassword})
-        if (!('error' in result)) {
+        const regResult = await register({username, password, re_password:rePassword})
+        if (!('error' in regResult)) {
             const authResult = await auth({
                 username, password
             })
