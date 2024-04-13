@@ -51,7 +51,7 @@ const links: Links = [{
 
 const MainChart: FC<Props> = ({title, endpoint, param, colors}) => {
     const [activeLink, setActiveLink] = useState<ActiveLink>('Час')
-    const [getValues, {data: chartData, error}] = weatherAPI.useGetChartValuesMutation()
+    const [getValues, {data: chartData, error, isLoading}] = weatherAPI.useGetChartValuesMutation()
 
     useEffect(() => {
         getValues({endpoint, param, dateFrom: formatDate(hourDateFrom), dateTo: formatDate(hourDateTo)})
@@ -71,17 +71,21 @@ const MainChart: FC<Props> = ({title, endpoint, param, colors}) => {
                        colors={colors} width={500}/>
                 <div className={classes.mainChart__nav}>
                     <span>Период:</span>
-                    {links.map(link => (
-                        <button
-                            key={link.name}
-                            className={`${classes.mainChart__nav__link} ${
-                                activeLink === link.name ? classes.mainChart__nav__link__active : ''
-                            }`}
-                            onClick={(e) => onLinkClick(e, link.name, link.dateFrom, link.dateTo)}
-                        >
-                            {link.name}
-                        </button>
-                    ))}
+                    {links.map(link => {
+                        const isDisabled = activeLink === link.name || isLoading
+                        return (
+                            <button
+                                key={link.name}
+                                className={`${classes.mainChart__nav__link} ${
+                                    isDisabled ? classes.mainChart__nav__link__active : ''
+                                }`}
+                                onClick={(e) => onLinkClick(e, link.name, link.dateFrom, link.dateTo)}
+                                disabled={isDisabled}
+                            >
+                                {link.name}
+                            </button>
+                        )
+                    })}
                 </div>
             </div>
         </div>
