@@ -23,7 +23,7 @@ export type RefreshQueryType = {
     refresh: string
 }
 
-export type AccessQueryType = {
+export type AccessType = {
     access: string
 }
 export type TokenQueryType = {
