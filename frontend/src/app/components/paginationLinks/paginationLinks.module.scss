@@ -12,5 +12,9 @@
     &__link {
         padding: 6px 9px;
         background-color: #1a1a1f;
+
+        &--current {
+            background-color: #7668cb;
+        }
     }
 }
