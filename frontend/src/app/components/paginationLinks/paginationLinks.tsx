@@ -22,9 +22,10 @@ const PaginationLinks: FC<Props> = ({contentCount}) => {
 
     return (
         <div className={classes.paginationLinks}>
-            {currentPage !== 1 &&
+            {currentPage !== 1 && <>
+                <Link href={`?page=${currentPage - 1}`} className={classes.paginationLinks__link}>{'<'}</Link>
                 <Link href={`?page=${1}`} className={classes.paginationLinks__link}>1</Link>
-            }
+            </>}
             {currentPage === 4 &&
                 <Link href={`?page=${2}`} className={classes.paginationLinks__link}>2</Link>
             }
@@ -52,11 +53,12 @@ const PaginationLinks: FC<Props> = ({contentCount}) => {
                     {pagesCount - 3}
                 </Link>
             }
-            {currentPage !== pagesCount &&
+            {currentPage !== pagesCount && <>
                 <Link href={`?page=${pagesCount}`} className={classes.paginationLinks__link}>
                     {pagesCount}
                 </Link>
-            }
+                <Link href={`?page=${currentPage + 1}`} className={classes.paginationLinks__link}>{'>'}</Link>
+            </>}
         </div>
     );
 };

@@ -1,8 +1,8 @@
 .paginationLinks {
-    border: 2px solid #efeff5;
+    border: 1px solid #efeff5;
     display: flex;
-    border-radius: 10px;
-    gap: 2px;
+    border-radius: 8px;
+    gap: 1px;
     background-color: #efeff5;
     overflow: hidden;
     width: max-content;
@@ -10,7 +10,7 @@
     cursor: default;
 
     &__link {
-        padding: 6px 9px;
+        padding: 7px 10px;
         background-color: #1a1a1f;
         transition: all 0.2s ease;
 
