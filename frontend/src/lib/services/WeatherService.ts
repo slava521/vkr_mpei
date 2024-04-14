@@ -23,9 +23,10 @@ export const weatherAPI = createApi({
                 url: `${requestParams.endpoint}/${requestParams.param}/?date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}`,
             })
         }),
-        downloadFile: build.query<null, DownloadRequestType>({
+        downloadFile: build.mutation<null, DownloadRequestType>({
             query: (requestParams) => ({
                 url: `${requestParams.endpoint}-file/${requestParams.fileType}/?date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}`,
+                headers: { 'Authorization': `Bearer ${requestParams.accessToken}`}
             })
         }),
     })

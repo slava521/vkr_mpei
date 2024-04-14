@@ -31,4 +31,5 @@ export type DownloadRequestType = {
     fileType: 'csv' | 'xlsx'
     dateFrom: string,
     dateTo: string,
+    accessToken: string
 }
