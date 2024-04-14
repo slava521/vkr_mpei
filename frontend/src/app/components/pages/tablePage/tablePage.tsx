@@ -11,6 +11,9 @@ import {weatherAPI} from "@/lib/services/WeatherService";
 import {EndpointType} from "@/lib/models/weatherTypes";
 import {useSearchParams} from "next/navigation";
 import PaginationLinks from "@/app/components/paginationLinks/paginationLinks";
+import {userAPI} from "@/lib/services/UserService";
+import {useAppSelector} from "@/lib/hooks";
+import DownloadFile from "@/app/components/downloadFile/downloadFile";
 
 type Props = {
     title: string,
@@ -18,11 +21,15 @@ type Props = {
     endpoint: EndpointType
 }
 
-const TablePage:FC<Props> = ({title, tableCols, endpoint}) => {
+const fileTypes:('csv' | 'xlsx')[] = ['csv', 'xlsx']
+
+const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
     const searchParams = useSearchParams()
     const stringPage = searchParams.get('page')
     const page = stringPage ? +stringPage : 1
     const {currentData} = weatherAPI.useGetTableQuery({endpoint, page, dateFrom: '', dateTo: ''})
+    const {access} = useAppSelector(state => state.userReducer)
+    const {isLoading, error} = userAPI.useVerifyUserQuery({token: access})
 
     return (
         <Container title={title}>
@@ -31,11 +38,27 @@ const TablePage:FC<Props> = ({title, tableCols, endpoint}) => {
                     <Input name='date_from' label='Начальная дата:' inputType='datetime-local'/>
                     <Input name='date_to' label='Конечная дата:' inputType='datetime-local'/>
                 </div>
-                <Button buttonType='reset' text='Сброс'/>
-                <Button buttonType='submit' text='Поиск'/>
+                <Button buttonType='reset' text='Сброс' small/>
+                <Button buttonType='submit' text='Поиск' small/>
             </form>
             <Table cols={tableCols} data={currentData?.results}/>
-            <PaginationLinks contentCount={currentData?.count}/>
+            <div className={classes.tableForm__footer}>
+                <PaginationLinks contentCount={currentData?.count}/>
+                {!isLoading && !error &&
+                    <div className={classes.tableForm__footer__buttons}>
+                        {fileTypes.map((file) => (
+                            <DownloadFile
+                                key={file}
+                                endpoint={endpoint}
+                                fileType={file}
+                                dateFrom={''}
+                                dateTo={''}
+                                accessToken={access}
+                            />
+                        ))}
+                    </div>
+                }
+            </div>
         </Container>
     );
 };

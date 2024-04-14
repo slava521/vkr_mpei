@@ -13,7 +13,7 @@ const PaginationLinks: FC<Props> = ({contentCount}) => {
     const searchParams = useSearchParams()
 
     if (contentCount === undefined) {
-        return <div>Загрузка...</div>
+        return null
     }
 
     const pagesCount = Math.ceil(contentCount / 20)

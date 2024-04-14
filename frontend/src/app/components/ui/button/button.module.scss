@@ -5,8 +5,6 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5px;
-    margin-right: 5px;
 	padding: 15px 40px;
     background-color: #7668cb;
     color: #efeff5;
@@ -16,9 +14,18 @@
     border: none;
     transition: all 0.3s ease;
     outline: 0;
+    cursor: pointer;
 
     &--right {
         margin-left: auto;
+    }
+
+    &--small {
+        padding: 10px 25px;
+    }
+
+    &--disabled {
+        pointer-events: none;
     }
 
     &:hover {
@@ -29,5 +36,10 @@
         &:active {
             transform: scale(0.99);
         }
+    }
+
+    &__loadingCursor {
+        border-radius: 25px;
+        cursor: progress;
     }
 }

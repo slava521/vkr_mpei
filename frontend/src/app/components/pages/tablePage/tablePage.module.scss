@@ -2,9 +2,22 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: 10px;
 
     &__inputs {
         display: flex;
         gap: 20px;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+
+        &__buttons {
+            display: flex;
+            gap: 20px
+        }
     }
 }
