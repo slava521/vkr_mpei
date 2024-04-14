@@ -12,9 +12,19 @@
     &__link {
         padding: 6px 9px;
         background-color: #1a1a1f;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #7668cb;
+        }
 
         &--current {
             background-color: #7668cb;
         }
+    }
+
+    &__disabled {
+        padding: 6px 9px;
+        background-color: #1a1a1f;
     }
 }
