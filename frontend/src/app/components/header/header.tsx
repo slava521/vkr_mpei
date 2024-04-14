@@ -10,7 +10,7 @@ const Header:FC = () => {
             <Container>
                 <div className={classes.header__body}>
                     <div className={classes.header__logo}>
-                        <img src='/logompei.png' alt='MPEI'/>
+                        <img src='/logompei.svg' alt='MPEI'/>
                     </div>
                     <NavLinks/>
                     <AuthButtons/>
