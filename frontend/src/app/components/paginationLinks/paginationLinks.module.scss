@@ -1,0 +1,16 @@
+.paginationLinks {
+    border: 2px solid #efeff5;
+    display: flex;
+    border-radius: 10px;
+    gap: 2px;
+    background-color: #efeff5;
+    overflow: hidden;
+    width: max-content;
+    margin-top: 20px;
+    cursor: default;
+
+    &__link {
+        padding: 6px 9px;
+        background-color: #1a1a1f;
+    }
+}

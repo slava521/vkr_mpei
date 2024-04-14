@@ -10,6 +10,7 @@ import {Params} from "@/app/shared/types/types";
 import {weatherAPI} from "@/lib/services/WeatherService";
 import {EndpointType} from "@/lib/models/weatherTypes";
 import {useSearchParams} from "next/navigation";
+import PaginationLinks from "@/app/components/paginationLinks/paginationLinks";
 
 type Props = {
     title: string,
@@ -34,6 +35,7 @@ const TablePage:FC<Props> = ({title, tableCols, endpoint}) => {
                 <Button buttonType='submit' text='Поиск'/>
             </form>
             <Table cols={tableCols} data={currentData?.results}/>
+            <PaginationLinks contentCount={currentData?.count}/>
         </Container>
     );
 };
