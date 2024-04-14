@@ -25,6 +25,12 @@ const AuthButtons: FC = () => {
     }, [refresh])
 
     useEffect(() => {
+        if (access && error) {
+            refreshToken({refresh})
+        }
+    }, [error, verifyLoading])
+
+    useEffect(() => {
         if (!!refreshError) {
             dispatch(setTokens({access: '', refresh: ''}))
         }
