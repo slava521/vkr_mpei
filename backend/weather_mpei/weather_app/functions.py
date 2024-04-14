@@ -1,10 +1,13 @@
+import base64
 import csv
+import io
 import os
 from datetime import datetime
+from json import detect_encoding
 
 import xlsxwriter
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
@@ -81,7 +84,7 @@ def main_param_json(model, allowed_params, request, **kwargs):
 def download_csv_data(request, model, filepath):
     query_set = date_filter(request, model)
     headers = [str(data.name) for data in query_set[0]._meta.fields]
-    with open(filepath, 'w+', encoding='utf-8') as file:
+    with open(filepath, 'w+') as file:
         writer = csv.writer(file)
         writer.writerow(headers)
         for obj in query_set:
@@ -89,10 +92,9 @@ def download_csv_data(request, model, filepath):
             writer.writerow(data)
 
 
-def download_xlsx_data(request, model, filepath):
-    file = open(filepath, 'w+', encoding='utf-8')
-    file.close()
-    book = xlsxwriter.Workbook(filepath)
+def download_xlsx_data(request, model):
+    output = io.BytesIO()
+    book = xlsxwriter.Workbook(output, {'in_memory': True})
     sheet = book.add_worksheet()
     row = 0
     column = 0
@@ -111,6 +113,8 @@ def download_xlsx_data(request, model, filepath):
         column = 0
         row += 1
     book.close()
+    output.seek(0)
+    return output
 
 
 def download_file_response(model, filename, request, **kwargs):
@@ -119,17 +123,24 @@ def download_file_response(model, filename, request, **kwargs):
         raise ParseError(detail='Неверный тип файла')
     temp_filename = datetime.now().strftime("f%d%m%Y%H%M%S%f")
     filepath = os.path.join(str(BASE_DIR), "weather_app", "files", temp_filename + "." + file_type)
+    xlsx_data = None
     if file_type == 'csv':
         download_csv_data(request, model, filepath)
     if file_type == 'xlsx':
-        download_xlsx_data(request, model, filepath)
+        xlsx_data = download_xlsx_data(request, model)
 
-    to_download = open(filepath, 'rb')
     content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     if file_type == 'csv':
         content_type = 'text/csv'
-    response = HttpResponse(to_download.read(), content_type=content_type)
+    response = HttpResponse(content_type=content_type)
+    if file_type == 'csv':
+        to_download = open(filepath, 'rb')
+        response.write(base64.b64encode(to_download.read()).decode('utf-8'))
+        to_download.close()
+        os.remove(filepath)
+    else:
+        response.write(base64.b64encode(xlsx_data.read()).decode('utf-8'))
+        xlsx_data.close()
+
     response['Content-Disposition'] = 'attachment; filename="' + filename + "." + file_type + '"'
-    to_download.close()
-    os.remove(filepath)
     return response
