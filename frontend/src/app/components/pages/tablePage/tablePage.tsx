@@ -14,7 +14,7 @@ import PaginationLinks from "@/app/components/paginationLinks/paginationLinks";
 import {userAPI} from "@/lib/services/UserService";
 import {useAppSelector} from "@/lib/hooks";
 import DownloadFile from "@/app/components/downloadFile/downloadFile";
-import {formatDate} from "@/app/shared/utils/utils";
+import {formatDate, formatDateString} from "@/app/shared/utils/utils";
 
 type Props = {
     title: string,
@@ -29,11 +29,11 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
     const stringPage = searchParams.get('page')
     const page = stringPage ? +stringPage : 1
     const paramsDateFrom = searchParams.get('dateFrom')
-    const dateFrom = paramsDateFrom ? formatDate(new Date(paramsDateFrom)) : ''
+    const dateFrom = paramsDateFrom ? formatDateString(paramsDateFrom) : ''
     const paramsDateTo = searchParams.get('dateTo')
-    const dateTo = paramsDateTo ? formatDate(new Date(paramsDateTo)) : ''
+    const dateTo = paramsDateTo ? formatDateString(paramsDateTo) : ''
 
-    const {currentData, refetch} = weatherAPI.useGetTableQuery({
+    const {currentData} = weatherAPI.useGetTableQuery({
         endpoint,
         page,
         dateFrom,

@@ -4,5 +4,5 @@ import {userAPI} from "@/lib/services/UserService";
 export const useUserVerify = () => {
     const {access} = useAppSelector(state => state.userReducer)
     const {isLoading, error} = userAPI.useVerifyUserQuery({token: access})
-    return !isLoading && !error
+    return [!isLoading && !error, isLoading]
 }

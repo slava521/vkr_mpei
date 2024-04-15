@@ -12,9 +12,10 @@ import {
     Tooltip,
     Filler,
     Legend,
-    type ChartOptions, ChartData, Point,
+    ChartData,
+    Point, BarElement
 } from 'chart.js';
-import {Line} from 'react-chartjs-2';
+import {Bar, Line} from 'react-chartjs-2';
 
 ChartJS.register(
     CategoryScale,
@@ -24,10 +25,11 @@ ChartJS.register(
     Title,
     Tooltip,
     Filler,
-    Legend
+    Legend,
+    BarElement,
 );
 
-const options: ChartOptions<'line'> = {
+const options = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -52,12 +54,13 @@ const options: ChartOptions<'line'> = {
 type Props = {
     labels: string[],
     values: number[],
-    param: string,
+    param: string | null,
     colors: string[],
-    width: number
+    width: number,
+    bar?: boolean
 }
 
-const Chart: FC<Props> = ({labels, values, param, colors, width}) => {
+const Chart: FC<Props> = ({labels, values, param, colors, width, bar}) => {
     const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null)
     const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null)
     const [gradient, setGradient] = useState<CanvasGradient | undefined>(undefined)
@@ -78,23 +81,37 @@ const Chart: FC<Props> = ({labels, values, param, colors, width}) => {
         gradient.addColorStop(index / (colors.length - 1), color);
     })
 
-    const data: ChartData<"line", (number | Point | null)[], unknown> = {
+    const standardDataset = {
+        label: param ?? '',
+        data: values,
+        backgroundColor: gradient,
+        borderColor: [],
+        borderWidth: 0,
+    }
+
+    const lineData: ChartData<"line", (number | Point | null)[], unknown> = {
         labels,
         datasets: [{
+            ...standardDataset,
             fill: true,
-            label: param,
-            data: values,
-            backgroundColor: gradient,
-            borderColor: [],
-            borderWidth: 0,
             tension: 0.2,
             pointRadius: 1.5
         }]
     }
 
+    const barData: ChartData<"bar", (number | Point | null)[], unknown> = {
+        labels,
+        datasets: [{
+            ...standardDataset,
+        }]
+    }
+
     return (
         <div className={classes.chart}>
-            <Line data={data} options={options} className={classes.chart__canvas}/>
+            {bar
+                ? <Bar data={barData} options={options} className={classes.chart__canvas}/>
+                : <Line data={lineData} options={options} className={classes.chart__canvas}/>
+            }
         </div>
     );
 };

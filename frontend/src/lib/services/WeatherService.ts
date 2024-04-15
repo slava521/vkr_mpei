@@ -20,7 +20,7 @@ export const weatherAPI = createApi({
         }),
         getChartValues: build.mutation<ChartResponseType, ChartRequestType>({
             query: (requestParams) => ({
-                url: `${requestParams.endpoint}/${requestParams.param}/?date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}`,
+                url: `${requestParams.endpoint}/${requestParams.param}/?date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}&every_second=${requestParams.everySecond ?? ''}`,
             })
         }),
         downloadFile: build.mutation<any, DownloadRequestType>({

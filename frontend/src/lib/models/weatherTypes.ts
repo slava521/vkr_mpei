@@ -19,6 +19,7 @@ export type ChartRequestType = {
     param: string
     dateFrom: string,
     dateTo: string,
+    everySecond?: boolean
 }
 
 export type ChartResponseType = {

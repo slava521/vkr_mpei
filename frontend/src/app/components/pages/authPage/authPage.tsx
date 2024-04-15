@@ -9,6 +9,7 @@ import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {useAppSelector} from "@/lib/hooks";
 import {userAPI} from "@/lib/services/UserService";
+import {useUserVerify} from "@/app/hooks/useUserVerify";
 
 type Props = {
     title: string,
@@ -20,17 +21,16 @@ type Props = {
 }
 
 const AuthPage: FC<Props> = ({title, inputs, submitName, link, linkName, onSubmit}) => {
-    const router = useRouter()
-    const {access} = useAppSelector(state => state.userReducer)
-    const {isLoading, error, currentData: verifyData} = userAPI.useVerifyUserQuery({token: access})
+    const {replace} = useRouter()
+    const [isAuthorized, verifyLoading] = useUserVerify()
 
     useEffect(() => {
-        if (!error && verifyData !== undefined) {
-            router.push('/')
+        if (isAuthorized && !verifyLoading) {
+            replace('/')
         }
-    }, [error, verifyData])
+    }, [isAuthorized, verifyLoading]);
 
-    if (isLoading && !error) {
+    if (verifyLoading || isAuthorized) {
         return <div className={classes.authPage}>Загрузка...</div>
     }
 

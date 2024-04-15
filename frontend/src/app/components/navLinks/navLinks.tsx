@@ -9,7 +9,7 @@ import {useUserVerify} from "@/app/hooks/useUserVerify";
 
 const NavLinks: FC = () => {
     const pathname = usePathname()
-    const isAuthenticated = useUserVerify()
+    const [isAuthenticated] = useUserVerify()
 
     return (
         <nav className={classes.nav}>

@@ -23,3 +23,7 @@ export const formatDate = (date: Date, ruFormat?: boolean) => {
     ].map(n => n.toString().padStart(2, "0")).join(":");
     return datePart + " " + timePart;
 }
+
+export const formatDateString = (date: string) => {
+    return formatDate(new Date(date))
+}
