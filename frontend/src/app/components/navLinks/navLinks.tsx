@@ -5,14 +5,11 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {FC} from "react";
 import {LINKS} from "@/app/shared/consts/consts";
-import {useAppSelector} from "@/lib/hooks";
-import {userAPI} from "@/lib/services/UserService";
+import {useUserVerify} from "@/app/hooks/useUserVerify";
 
 const NavLinks: FC = () => {
-    const {access, refresh} = useAppSelector(state => state.userReducer)
-    const {isLoading: verifyLoading, error} = userAPI.useVerifyUserQuery({token: access})
     const pathname = usePathname()
-    const isAuthenticated = !verifyLoading && !error
+    const isAuthenticated = useUserVerify()
 
     return (
         <nav className={classes.nav}>
