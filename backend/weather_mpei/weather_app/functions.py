@@ -36,9 +36,8 @@ def date_filter(request, model):
     return query_set.order_by('date').reverse()
 
 
-def main_param_json(model, allowed_params, request, **kwargs):
+def chart_values(model, allowed_params, request, **kwargs):
     param = kwargs['param']
-    param = param.upper()
     if param not in allowed_params:
         raise ParseError(detail='Неверный параметр')
 
@@ -58,8 +57,8 @@ def main_param_json(model, allowed_params, request, **kwargs):
         datetime_to = datetime.strptime(date_to, "%Y-%m-%d %H:%M:%S")
         datetime_from = datetime.strptime(date_from, "%Y-%m-%d %H:%M:%S")
         date_range = datetime_to - datetime_from
-        if date_range.total_seconds() > 60 * 60 * 24:
-            raise ParseError(detail='Посекундно можно выводить максимум за день')
+        if date_range.total_seconds() > 60 * 60 * 2:
+            raise ParseError(detail='Посекундно можно выводить максимум за 2 часа')
         dataset = model.objects.filter(date__range=(date_from, date_to)).values(param, 'date')
         for data in dataset:
             labels.append(data['date'])

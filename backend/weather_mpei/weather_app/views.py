@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .constants import MeteoDataParams, WindDataParams, InvertorParams
-from .functions import date_filter, main_param_json, download_file_response
+from .functions import date_filter, download_file_response, chart_values
 from .models import MeteoData, Invertor, WindData
 from .serializers import MeteoDataSerializer, WindDataSerializer, InvertorSerializer
 
@@ -43,19 +43,19 @@ class InvertorAPIList(generics.ListAPIView):
 class MeteoDataParamAPIView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
-        return main_param_json(MeteoData, MeteoDataParams, request, **kwargs)
+        return chart_values(MeteoData, MeteoDataParams, request, **kwargs)
 
 
 class WindDataParamAPIView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
-        return main_param_json(WindData, WindDataParams, request, **kwargs)
+        return chart_values(WindData, WindDataParams, request, **kwargs)
 
 
 class InvertorParamAPIView(generics.RetrieveAPIView):
 
     def get(self, request, *args, **kwargs):
-        return main_param_json(Invertor, InvertorParams, request, **kwargs)
+        return chart_values(Invertor, InvertorParams, request, **kwargs)
 
 
 class MeteoDataFileAPIView(generics.RetrieveAPIView):
