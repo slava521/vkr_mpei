@@ -3,11 +3,10 @@ import csv
 import io
 import os
 from datetime import datetime
-from json import detect_encoding
 
 import xlsxwriter
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
@@ -47,11 +46,27 @@ def main_param_json(model, allowed_params, request, **kwargs):
     date_to = request.query_params.get('date_to', default=None)
     if date_from is None or date_to is None:
         raise ParseError(detail='Отсутствие date_from или date_to в query параметрах')
-
-    ids = model.objects.filter(date__range=(date_from, date_to)).values('id')
+    every_second = request.query_params.get('every_second', default=False)
+    every_second_allowed_params = [False, '', 'false', 'true']
+    if every_second not in every_second_allowed_params:
+        raise ParseError(detail="every_second может быть только false, true или ''")
 
     labels = []
     values = []
+
+    if bool(every_second) and eval(every_second.title()):
+        datetime_to = datetime.strptime(date_to, "%Y-%m-%d %H:%M:%S")
+        datetime_from = datetime.strptime(date_from, "%Y-%m-%d %H:%M:%S")
+        date_range = datetime_to - datetime_from
+        if date_range.total_seconds() > 60 * 60 * 24:
+            raise ParseError(detail='Посекундно можно выводить максимум за день')
+        dataset = model.objects.filter(date__range=(date_from, date_to)).values(param, 'date')
+        for data in dataset:
+            labels.append(data['date'])
+            values.append(data[param])
+        return Response({'labels': labels, 'values': values})
+
+    ids = model.objects.filter(date__range=(date_from, date_to)).values('id')
 
     length = len(ids)
     if length == 0:
