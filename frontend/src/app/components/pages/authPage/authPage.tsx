@@ -7,9 +7,10 @@ import Button from "@/app/components/ui/button/button";
 import {InputsType} from "@/app/shared/types/types";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import {useAppSelector} from "@/lib/hooks";
-import {userAPI} from "@/lib/services/UserService";
 import {useUserVerify} from "@/app/hooks/useUserVerify";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import {SerializedError} from "@reduxjs/toolkit";
+import ErrorMessage from "@/app/components/errorMessage/errorMessage";
 
 type Props = {
     title: string,
@@ -18,9 +19,21 @@ type Props = {
     link: string,
     linkName: string,
     onSubmit: (event: React.FormEvent<HTMLFormElement>) => void,
+    error: FetchBaseQueryError | SerializedError | undefined,
+    loading: boolean
 }
 
-const AuthPage: FC<Props> = ({title, inputs, submitName, link, linkName, onSubmit}) => {
+const AuthPage: FC<Props> = (
+    {
+        title,
+        inputs,
+        submitName,
+        link,
+        linkName,
+        onSubmit,
+        error,
+        loading
+    }) => {
     const {replace} = useRouter()
     const [isAuthorized, verifyLoading] = useUserVerify()
 
@@ -40,6 +53,7 @@ const AuthPage: FC<Props> = ({title, inputs, submitName, link, linkName, onSubmi
                 <div className={classes['authPage__form--left']}/>
                 <form className={classes.authPage__form} onSubmit={onSubmit}>
                     <h4 className={classes.authPage__form__title}>{title}</h4>
+                    <ErrorMessage error={error} loading={loading} className={classes.authPage__form__error}/>
                     {inputs.map(input => (
                         <Input
                             key={input.name}
@@ -47,6 +61,7 @@ const AuthPage: FC<Props> = ({title, inputs, submitName, link, linkName, onSubmi
                             name={input.name}
                             label={input.label}
                             iconSrc={input.type === 'text' ? '/mailIcon.svg' : '/passwordIcon.svg'}
+                            required
                         />
                     ))}
                     <Button buttonType='submit' text={submitName} right/>

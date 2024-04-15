@@ -16,6 +16,7 @@ import {weatherAPI} from "@/lib/services/WeatherService";
 import {formatDateString} from "@/app/shared/utils/utils";
 import {TEMPERATURE_COLORS} from "@/app/shared/consts/consts";
 import {useUserVerify} from "@/app/hooks/useUserVerify";
+import ErrorMessage from "@/app/components/errorMessage/errorMessage";
 
 type Props = {
     title: string,
@@ -79,8 +80,7 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
         <Container title={title}>
             <div className={classes.chartPage}>
                 <div className={classes.chartPage__sidebar}>
-                    <div></div>
-                    {/*TODO Сделать сообщение ошибки*/}
+                    <ErrorMessage error={error} loading={isLoading} className={classes.chartPage__sidebar__error}/>
                     <div className={classes.chartPage__sidebar__body}>
                         <div className={classes.chartPage__sidebar__text}>
                             Введите даты и выберите параметр:

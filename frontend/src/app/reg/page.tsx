@@ -27,8 +27,8 @@ const INPUTS: InputsType = [
 ]
 
 const Page = () => {
-    const [register, {error}] = userAPI.useRegisterUserMutation() // TODO: добавить обработку ошибок
-    const [auth] = userAPI.useAuthUserMutation()
+    const [register, {error: regError, isLoading: regLoading}] = userAPI.useRegisterUserMutation()
+    const [auth, {error: authError, isLoading: authLoading}] = userAPI.useAuthUserMutation()
     const dispatch = useAppDispatch()
     const router = useRouter()
 
@@ -38,7 +38,7 @@ const Page = () => {
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
         const rePassword = formData.get('re_password') as string;
-        const regResult = await register({username, password, re_password:rePassword})
+        const regResult = await register({username, password, re_password: rePassword})
         if (!('error' in regResult)) {
             const authResult = await auth({
                 username, password
@@ -58,6 +58,8 @@ const Page = () => {
             link='/login'
             linkName='Есть аккаунт?'
             onSubmit={handleSubmit}
+            error={regError || authError}
+            loading={regLoading || authLoading}
         />
     );
 };

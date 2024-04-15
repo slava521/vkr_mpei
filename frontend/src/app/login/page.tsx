@@ -22,7 +22,7 @@ const INPUTS: InputsType = [
 ]
 
 const Page = () => {
-    const [auth] = userAPI.useAuthUserMutation()
+    const [auth, {isLoading, error}] = userAPI.useAuthUserMutation()
     const dispatch = useAppDispatch()
     const router = useRouter()
 
@@ -31,9 +31,7 @@ const Page = () => {
         const formData = new FormData(event.target as HTMLFormElement);
         const username = formData.get('username') as string;
         const password = formData.get('password') as string;
-        const authResult = await auth({
-            username, password
-        })
+        const authResult = await auth({username, password})
         if (!('error' in authResult)) {
             dispatch(setTokens(authResult.data))
             router.push("/")
@@ -48,6 +46,8 @@ const Page = () => {
             link='/reg'
             linkName='Зарегистрироваться'
             onSubmit={handleSubmit}
+            loading={isLoading}
+            error={error}
         />
     );
 };
