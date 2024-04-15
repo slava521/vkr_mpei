@@ -12,7 +12,7 @@ type Props = {
 const PaginationLinks: FC<Props> = ({contentCount}) => {
     const searchParams = useSearchParams()
 
-    if (contentCount === undefined) {
+    if (contentCount === undefined || contentCount === 0) {
         return null
     }
 
@@ -20,20 +20,26 @@ const PaginationLinks: FC<Props> = ({contentCount}) => {
     const queryParamSearch = searchParams.get('page')
     const currentPage = queryParamSearch ? +queryParamSearch : 1
 
+    const newParams = (page: number) => {
+        const params = new URLSearchParams(searchParams)
+        params.set('page', page + '')
+        return '?'+params.toString()
+    }
+
     return (
         <div className={classes.paginationLinks}>
             {currentPage !== 1 && <>
-                <Link href={`?page=${currentPage - 1}`} className={classes.paginationLinks__link}>{'<'}</Link>
-                <Link href={`?page=${1}`} className={classes.paginationLinks__link}>1</Link>
+                <Link href={newParams(currentPage - 1)} className={classes.paginationLinks__link}>{'<'}</Link>
+                <Link href={newParams(1)} className={classes.paginationLinks__link}>1</Link>
             </>}
             {currentPage === 4 &&
-                <Link href={`?page=${2}`} className={classes.paginationLinks__link}>2</Link>
+                <Link href={newParams(2)} className={classes.paginationLinks__link}>2</Link>
             }
             {currentPage > 4 &&
                 <div className={classes.paginationLinks__disabled}>...</div>
             }
             {currentPage !== 1 && currentPage !== 2 &&
-                <Link href={`?page=${currentPage - 1}`} className={classes.paginationLinks__link}>
+                <Link href={newParams(currentPage - 1)} className={classes.paginationLinks__link}>
                     {currentPage - 1}
                 </Link>
             }
@@ -41,7 +47,7 @@ const PaginationLinks: FC<Props> = ({contentCount}) => {
                 {currentPage}
             </div>
             {currentPage !== pagesCount && currentPage !== pagesCount - 1 &&
-                <Link href={`?page=${currentPage + 1}`} className={classes.paginationLinks__link}>
+                <Link href={newParams(currentPage + 1)} className={classes.paginationLinks__link}>
                     {currentPage + 1}
                 </Link>
             }
@@ -49,15 +55,15 @@ const PaginationLinks: FC<Props> = ({contentCount}) => {
                 <div className={classes.paginationLinks__disabled}>...</div>
             }
             {currentPage === pagesCount - 3 &&
-                <Link href={`?page=${pagesCount - 3}`} className={classes.paginationLinks__link}>
+                <Link href={newParams(pagesCount - 3)} className={classes.paginationLinks__link}>
                     {pagesCount - 3}
                 </Link>
             }
             {currentPage !== pagesCount && <>
-                <Link href={`?page=${pagesCount}`} className={classes.paginationLinks__link}>
+                <Link href={newParams(pagesCount)} className={classes.paginationLinks__link}>
                     {pagesCount}
                 </Link>
-                <Link href={`?page=${currentPage + 1}`} className={classes.paginationLinks__link}>{'>'}</Link>
+                <Link href={newParams(currentPage + 1)} className={classes.paginationLinks__link}>{'>'}</Link>
             </>}
         </div>
     );

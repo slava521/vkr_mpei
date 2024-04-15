@@ -5,10 +5,19 @@ import {formatDate} from "@/app/shared/utils/utils";
 
 type Props = {
     cols: Params
+    loading: boolean,
     data?: TableData
+    contentCount?: number,
 }
 
-const Table: FC<Props> = ({cols, data}) => {
+const Table: FC<Props> = ({cols, loading, data, contentCount}) => {
+    if (loading) {
+        return <div>Загрузка...</div>
+    }
+
+    if (contentCount === 0) {
+        return <div>Информация по указанным данным отсутствует.</div>
+    }
 
     return (
         <table className={classes.table}>
