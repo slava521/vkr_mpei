@@ -1,11 +1,14 @@
 'use client'
 
-import classes from "./navLinks.module.scss";
+import {FC} from "react";
+
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {FC} from "react";
-import {LINKS} from "@/app/shared/consts/consts";
+
 import {useUserVerify} from "@/app/hooks/useUserVerify";
+import {LINKS} from "@/app/shared/consts/consts";
+
+import classes from "./navLinks.module.scss";
 
 const NavLinks: FC = () => {
     const pathname = usePathname()

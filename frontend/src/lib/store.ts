@@ -1,6 +1,5 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {
-    persistStore,
     persistReducer,
     FLUSH,
     REHYDRATE,
@@ -9,30 +8,31 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist'
-import {userAPI} from "@/lib/services/UserService";
-import userReducer from './reducers/userSlice';
 import createWebStorage from "redux-persist/es/storage/createWebStorage";
-import {PersistConfig} from "redux-persist/es/types";
+
+import {userAPI} from "@/lib/services/UserService";
 import {weatherAPI} from "@/lib/services/WeatherService";
 
+import userReducer from './reducers/userSlice';
+
 const createNoopStorage = () => {
-  return {
-    getItem() {
-      return Promise.resolve(null);
-    },
-    setItem(_key: string, value: number) {
-      return Promise.resolve(value);
-    },
-    removeItem() {
-      return Promise.resolve();
-    },
-  };
+    return {
+        getItem() {
+            return Promise.resolve(null);
+        },
+        setItem(_key: string, value: number) {
+            return Promise.resolve(value);
+        },
+        removeItem() {
+            return Promise.resolve();
+        },
+    };
 };
 
 const storage =
   typeof window !== "undefined"
-    ? createWebStorage("local")
-    : createNoopStorage();
+      ? createWebStorage("local")
+      : createNoopStorage();
 
 const persistConfig = {
     key: 'root',

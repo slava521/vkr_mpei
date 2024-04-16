@@ -1,8 +1,10 @@
-import classes from "./header.module.scss";
-import NavLinks from "@/app/components/navLinks/navLinks";
 import {FC} from "react";
+
 import AuthButtons from "@/app/components/authButtons/authButtons";
+import NavLinks from "@/app/components/navLinks/navLinks";
 import Container from "@/app/components/ui/container/container";
+
+import classes from "./header.module.scss";
 
 const Header:FC = () => {
     return (

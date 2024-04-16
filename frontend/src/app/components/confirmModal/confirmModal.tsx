@@ -1,7 +1,9 @@
 'use client'
 
 import React, {FC, useEffect, useState} from "react";
+
 import Button from "@/app/components/ui/button/button";
+
 import classes from "./confirmModal.module.scss";
 
 type Props = {
@@ -15,7 +17,7 @@ const ConfirmModal: FC<Props> = ({confirm, close, visible, text}) => {
     const [visibilityClass, setVisibilityClass] = useState('')
     useEffect(() => {
         visible && setVisibilityClass(classes['confirmModal--show'])
-    }, []);
+    }, [visible]);
 
     const handleClose = () => {
         setVisibilityClass('')

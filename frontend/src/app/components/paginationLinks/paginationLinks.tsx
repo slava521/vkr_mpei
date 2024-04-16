@@ -1,9 +1,11 @@
 'use client'
 
 import {FC} from "react";
-import classes from "./paginationLinks.module.scss";
+
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
+
+import classes from "./paginationLinks.module.scss";
 
 type Props = {
     contentCount?: number,

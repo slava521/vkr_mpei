@@ -1,4 +1,5 @@
 import Container from "@/app/components/ui/container/container";
+
 import classes from "./footer.module.scss";
 
 const Footer = () => {

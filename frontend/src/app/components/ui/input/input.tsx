@@ -1,8 +1,8 @@
 "use client"
 
 import {FC, HTMLInputTypeAttribute, useId} from "react";
+
 import classes from "./input.module.scss";
-import Image from "next/image";
 
 type Props = {
     label: string,

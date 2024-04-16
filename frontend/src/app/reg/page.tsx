@@ -1,12 +1,14 @@
 'use client'
 
-import {InputsType} from "@/app/shared/types/types";
-import AuthPage from "@/app/components/pages/authPage/authPage";
 import React from "react";
-import {userAPI} from "@/lib/services/UserService";
+
+import {useRouter} from "next/navigation";
+
+import AuthPage from "@/app/components/pages/authPage/authPage";
+import {InputsType} from "@/app/shared/types/types";
 import {useAppDispatch} from "@/lib/hooks";
 import {setTokens} from "@/lib/reducers/userSlice";
-import {useRouter} from "next/navigation";
+import {userAPI} from "@/lib/services/UserService";
 
 const INPUTS: InputsType = [
     {

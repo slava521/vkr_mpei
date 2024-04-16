@@ -1,6 +1,8 @@
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {SerializedError} from "@reduxjs/toolkit";
 import {FC} from "react";
+
+import {SerializedError} from "@reduxjs/toolkit";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+
 import classes from "./errorMessage.module.scss";
 
 type Props = {

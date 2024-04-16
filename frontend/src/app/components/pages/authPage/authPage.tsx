@@ -1,16 +1,19 @@
 'use client'
 
-import classes from "./authPage.module.scss";
 import React, {FC, useEffect} from "react";
-import Input from "@/app/components/ui/input/input";
-import Button from "@/app/components/ui/button/button";
-import {InputsType} from "@/app/shared/types/types";
+
+import {SerializedError} from "@reduxjs/toolkit";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import {useUserVerify} from "@/app/hooks/useUserVerify";
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {SerializedError} from "@reduxjs/toolkit";
+
 import ErrorMessage from "@/app/components/errorMessage/errorMessage";
+import Button from "@/app/components/ui/button/button";
+import Input from "@/app/components/ui/input/input";
+import {useUserVerify} from "@/app/hooks/useUserVerify";
+import {InputsType} from "@/app/shared/types/types";
+
+import classes from "./authPage.module.scss";
 
 type Props = {
     title: string,

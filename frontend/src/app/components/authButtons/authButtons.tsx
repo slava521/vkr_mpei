@@ -1,12 +1,15 @@
 'use client'
 
 import React, {FC, useEffect} from "react";
-import classes from "./authButtons.module.scss";
+
 import Link from "next/link";
-import {userAPI} from "@/lib/services/UserService";
+
+import {useConfirmModal} from "@/app/hooks/useConfirmModal";
 import {useAppDispatch, useAppSelector} from "@/lib/hooks";
 import {setAccessToken, setTokens} from "@/lib/reducers/userSlice";
-import {useConfirmModal} from "@/app/hooks/useConfirmModal";
+import {userAPI} from "@/lib/services/UserService";
+
+import classes from "./authButtons.module.scss";
 
 const AuthButtons: FC = () => {
     const {access, refresh} = useAppSelector(state => state.userReducer)
@@ -35,7 +38,7 @@ const AuthButtons: FC = () => {
         if (access && error) {
             refreshToken({refresh})
         }
-    }, [error, verifyLoading])
+    }, [access, error, verifyLoading])
 
     useEffect(() => {
         if (!!refreshError) {

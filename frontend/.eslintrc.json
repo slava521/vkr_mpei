@@ -1,0 +1,52 @@
+{
+  "extends": "next/core-web-vitals",
+  "plugins": [
+    "import",
+    "unused-imports"
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "react-hooks/exhaustive-deps": "off",
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      "error",
+      4
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
+    "unused-imports/no-unused-imports": "error",
+    "@next/next/no-img-element": "off"
+  }
+}

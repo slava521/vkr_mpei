@@ -1,10 +1,13 @@
-import type {Metadata} from "next";
 import React from "react";
+
+import type {Metadata} from "next";
+
 import './globals.scss'
-import classes from "./layout.module.scss";
-import Header from "@/app/components/header/header";
 import Footer from "@/app/components/footer/footer";
+import Header from "@/app/components/header/header";
 import StoreProvider from "@/lib/storeProvider";
+
+import classes from "./layout.module.scss";
 
 export const metadata: Metadata = {
     title: "Метеоданные НИУ МЭИ"
@@ -18,17 +21,17 @@ export default function RootLayout(
     }>) {
     return (
         <html lang="ru">
-        <body>
-        <div className={classes.wrapper}>
-            <StoreProvider>
-                <Header/>
-                <main className={classes.main}>
-                    {children}
-                </main>
-                <Footer/>
-            </StoreProvider>
-        </div>
-        </body>
+            <body>
+                <div className={classes.wrapper}>
+                    <StoreProvider>
+                        <Header/>
+                        <main className={classes.main}>
+                            {children}
+                        </main>
+                        <Footer/>
+                    </StoreProvider>
+                </div>
+            </body>
         </html>
     );
 }

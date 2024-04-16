@@ -1,6 +1,7 @@
 "use client"
 
 import {FC, useId} from "react";
+
 import classes from "./checkbox.module.scss";
 
 type Props = {

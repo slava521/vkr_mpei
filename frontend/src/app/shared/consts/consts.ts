@@ -68,7 +68,7 @@ export const METEO_TABLE_COLS:Params = [
 ]
 
 export const WIND_TABLE_COLS:Params = [
-{
+    {
         id: 'WS1AVG',
         description: 'скорость ветра (м/с) за 3 сек',
     },

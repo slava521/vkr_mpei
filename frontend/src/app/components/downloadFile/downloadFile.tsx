@@ -1,10 +1,11 @@
 'use client'
 
-import {DownloadRequestType} from "@/lib/models/weatherTypes";
 import {FC, useEffect} from "react";
+
 import Button from "@/app/components/ui/button/button";
-import {weatherAPI} from "@/lib/services/WeatherService";
 import {useConfirmModal} from "@/app/hooks/useConfirmModal";
+import {DownloadRequestType} from "@/lib/models/weatherTypes";
+import {weatherAPI} from "@/lib/services/WeatherService";
 
 type Props = DownloadRequestType & {
     dateToRu: string,

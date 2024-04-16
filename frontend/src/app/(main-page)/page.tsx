@@ -1,7 +1,8 @@
-import Container from "@/app/components/ui/container/container";
-import classes from "./page.module.scss";
 import MainChart from "@/app/components/mainChart/mainChart";
+import Container from "@/app/components/ui/container/container";
 import {HUMIDITY_COLORS, PRESSURE_COLORS, TEMPERATURE_COLORS, WIND_SPEED_COLORS} from "@/app/shared/consts/consts";
+
+import classes from "./page.module.scss";
 
 export default function Home() {
     return (

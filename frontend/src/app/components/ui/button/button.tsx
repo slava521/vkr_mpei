@@ -1,4 +1,5 @@
 import {FC, memo} from "react";
+
 import classes from "./button.module.scss";
 
 type Props = {
@@ -35,5 +36,7 @@ const Button: FC<Props> = memo((
         </div>
     );
 });
+
+Button.displayName = 'Button'
 
 export default Button;

@@ -1,20 +1,23 @@
 'use client'
 
 import React, {FC} from 'react';
-import Container from "@/app/components/ui/container/container";
-import classes from "./tablePage.module.scss";
-import Input from "@/app/components/ui/input/input";
-import Button from "@/app/components/ui/button/button";
-import Table from "@/app/components/table/table";
-import {Params} from "@/app/shared/types/types";
-import {weatherAPI} from "@/lib/services/WeatherService";
-import {EndpointType} from "@/lib/models/weatherTypes";
+
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import PaginationLinks from "@/app/components/paginationLinks/paginationLinks";
-import {userAPI} from "@/lib/services/UserService";
-import {useAppSelector} from "@/lib/hooks";
+
 import DownloadFile from "@/app/components/downloadFile/downloadFile";
-import {formatDate, formatDateString} from "@/app/shared/utils/utils";
+import PaginationLinks from "@/app/components/paginationLinks/paginationLinks";
+import Table from "@/app/components/table/table";
+import Button from "@/app/components/ui/button/button";
+import Container from "@/app/components/ui/container/container";
+import Input from "@/app/components/ui/input/input";
+import {Params} from "@/app/shared/types/types";
+import { formatDateString} from "@/app/shared/utils/utils";
+import {useAppSelector} from "@/lib/hooks";
+import {EndpointType} from "@/lib/models/weatherTypes";
+import {userAPI} from "@/lib/services/UserService";
+import {weatherAPI} from "@/lib/services/WeatherService";
+
+import classes from "./tablePage.module.scss";
 
 type Props = {
     title: string,

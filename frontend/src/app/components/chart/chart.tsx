@@ -1,7 +1,7 @@
 "use client"
 
-import classes from "./chart.module.scss";
 import {FC, useEffect, useState} from "react";
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -16,6 +16,8 @@ import {
     Point, BarElement
 } from 'chart.js';
 import {Bar, Line} from 'react-chartjs-2';
+
+import classes from "./chart.module.scss";
 
 ChartJS.register(
     CategoryScale,
@@ -75,7 +77,7 @@ const Chart: FC<Props> = ({labels, values, param, colors, width, bar}) => {
 
     useEffect(() => {
         ctx && setGradient(ctx.createLinearGradient(0, 0, width, 0));
-    }, [ctx])
+    }, [ctx, width])
 
     gradient && colors && colors.forEach((color, index) => {
         gradient.addColorStop(index / (colors.length - 1), color);

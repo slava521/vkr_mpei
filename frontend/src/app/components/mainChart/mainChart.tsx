@@ -1,11 +1,13 @@
 "use client"
 
 import React, {FC, useEffect, useState} from "react";
-import classes from "./mainChart.module.scss";
+
 import Chart from "@/app/components/chart/chart";
+import {formatDate} from "@/app/shared/utils/utils";
 import {EndpointType} from "@/lib/models/weatherTypes";
 import {weatherAPI} from "@/lib/services/WeatherService";
-import {formatDate} from "@/app/shared/utils/utils";
+
+import classes from "./mainChart.module.scss";
 
 type Props = {
     title: string,
@@ -67,8 +69,13 @@ const MainChart: FC<Props> = ({title, endpoint, param, colors}) => {
         <div className={classes.mainChart}>
             <h3 className={classes.mainChart__title}>{title}</h3>
             <div className={classes.mainChart__bg}>
-                <Chart labels={chartData?.labels || []} values={chartData?.values || []} param={param}
-                       colors={colors} width={500}/>
+                <Chart
+                    labels={chartData?.labels || []}
+                    values={chartData?.values || []}
+                    param={param}
+                    colors={colors}
+                    width={500}
+                />
                 <div className={classes.mainChart__nav}>
                     <span>Период:</span>
                     {links.map(link => {
