@@ -1,11 +1,12 @@
 'use client'
 
-import {FC, useEffect} from "react";
+import React, {FC, useEffect} from "react";
 import classes from "./authButtons.module.scss";
 import Link from "next/link";
 import {userAPI} from "@/lib/services/UserService";
 import {useAppDispatch, useAppSelector} from "@/lib/hooks";
 import {setAccessToken, setTokens} from "@/lib/reducers/userSlice";
+import {UseConfirmModal} from "@/app/hooks/useConfirmModal";
 
 const AuthButtons: FC = () => {
     const {access, refresh} = useAppSelector(state => state.userReducer)
@@ -14,9 +15,15 @@ const AuthButtons: FC = () => {
         skip: !access
     })
     const {currentData: userData, isLoading: userDataLoading} = userAPI.useGetUserInformationQuery({access})
-    const [logout, {isLoading: logoutLoading}] = userAPI.useLogoutUserMutation()
+    const [logoutRequest, {isLoading: logoutLoading}] = userAPI.useLogoutUserMutation()
     const [refreshToken, {error: refreshError, data: refreshData}] = userAPI.useRefreshUserMutation()
     const dispatch = useAppDispatch()
+
+    const logout = () => {
+        logoutRequest({refresh})
+        dispatch(setTokens({access: '', refresh: ''}))
+    }
+    const [ConfirmLogoutModal, openConfirmLogoutModal] = UseConfirmModal(logout, ', что хотите выйти')
 
     useEffect(() => {
         if (access && refresh) {
@@ -43,11 +50,6 @@ const AuthButtons: FC = () => {
         }
     }, [refreshData])
 
-    const handleLogout = () => {
-        logout({refresh})
-        dispatch(setTokens({access: '', refresh: ''}))
-    }
-
     if (userDataLoading) {
         return <div className={classes.authButtons}>Загрузка...</div>
     }
@@ -62,10 +64,11 @@ const AuthButtons: FC = () => {
                 <div className={classes.authButtons__loading}>
                     <button className={`${classes.authButtons__btn} ${classes.authButtons__btn__logout} ${
                         logoutLoading || verifyLoading ? classes.authButtons__btn__logout__loading : ''
-                    }`} onClick={handleLogout}>
+                    }`} onClick={openConfirmLogoutModal}>
                         Выход
                     </button>
                 </div>
+                <ConfirmLogoutModal/>
             </>
             }
             {(!!error || !access) && <>
