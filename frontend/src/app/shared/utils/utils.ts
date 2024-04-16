@@ -24,6 +24,6 @@ export const formatDate = (date: Date, ruFormat?: boolean) => {
     return datePart + " " + timePart;
 }
 
-export const formatDateString = (date: string) => {
-    return formatDate(new Date(date))
+export const formatDateString = (date: string | null, ruFormat?: boolean) => {
+    return date ? formatDate(new Date(date), ruFormat) : ''
 }

@@ -6,7 +6,7 @@ type ReturnParams = [
     openModal: VoidFunction
 ]
 
-export const UseConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnParams => {
+export const useConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnParams => {
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [visible, setVisible] = useState(true)
 

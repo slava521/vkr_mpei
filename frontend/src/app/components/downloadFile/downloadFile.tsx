@@ -4,8 +4,12 @@ import {DownloadRequestType} from "@/lib/models/weatherTypes";
 import {FC, useEffect} from "react";
 import Button from "@/app/components/ui/button/button";
 import {weatherAPI} from "@/lib/services/WeatherService";
+import {useConfirmModal} from "@/app/hooks/useConfirmModal";
 
-type Props = DownloadRequestType
+type Props = DownloadRequestType & {
+    dateToRu: string,
+    dateFromRu: string,
+}
 
 const DownloadFile: FC<Props> = (
     {
@@ -13,9 +17,25 @@ const DownloadFile: FC<Props> = (
         fileType,
         dateTo,
         dateFrom,
+        dateToRu,
+        dateFromRu,
         accessToken
     }) => {
     const [download, {isLoading, error, data}] = weatherAPI.useDownloadFileMutation()
+    let confirmText = ', что хотите скачать все данные'
+    if (dateFromRu) {
+        confirmText += ` c ${dateFromRu}`
+    }
+    if (dateToRu) {
+        confirmText += ` до ${dateToRu}`
+    }
+    const [ConfirmDownloadFile, openConfirmModal] = useConfirmModal(() => download({
+        endpoint,
+        fileType,
+        dateTo,
+        dateFrom,
+        accessToken
+    }), confirmText)
 
     useEffect(() => {
         if (data && !error && !isLoading) {
@@ -38,18 +58,13 @@ const DownloadFile: FC<Props> = (
                 buttonType='button'
                 text={`Загрузить ${fileType} файл`}
                 small
-                onClick={() => download({
-                    endpoint,
-                    fileType,
-                    dateTo,
-                    dateFrom,
-                    accessToken
-                })}
+                onClick={openConfirmModal}
                 disabled={isLoading}
             />
             {isLoading &&
                 <img src="/loading.gif" alt="Загрузка" height={40}/>
             }
+            <ConfirmDownloadFile/>
         </>
     );
 };

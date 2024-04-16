@@ -29,9 +29,11 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
     const stringPage = searchParams.get('page')
     const page = stringPage ? +stringPage : 1
     const paramsDateFrom = searchParams.get('dateFrom')
-    const dateFrom = paramsDateFrom ? formatDateString(paramsDateFrom) : ''
+    const dateFrom = formatDateString(paramsDateFrom)
+    const dateFromRu = formatDateString(paramsDateFrom, true)
     const paramsDateTo = searchParams.get('dateTo')
-    const dateTo = paramsDateTo ? formatDateString(paramsDateTo) : ''
+    const dateTo = formatDateString(paramsDateTo)
+    const dateToRu = formatDateString(paramsDateTo, true)
 
     const {currentData} = weatherAPI.useGetTableQuery({
         endpoint,
@@ -53,8 +55,14 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
         if (formDateFrom) {
             params.set('dateFrom', formDateFrom)
         }
+        else {
+            params.delete('dateFrom')
+        }
         if (formDateTo) {
             params.set('dateTo', formDateTo)
+        }
+        else {
+            params.delete('dateTo')
         }
         params.delete('page')
         replace(`${pathname}?${params.toString()}`)
@@ -101,6 +109,8 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
                                 fileType={file}
                                 dateFrom={dateFrom}
                                 dateTo={dateTo}
+                                dateFromRu={dateFromRu}
+                                dateToRu={dateToRu}
                                 accessToken={access}
                             />
                         ))}

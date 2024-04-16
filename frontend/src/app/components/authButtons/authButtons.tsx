@@ -6,7 +6,7 @@ import Link from "next/link";
 import {userAPI} from "@/lib/services/UserService";
 import {useAppDispatch, useAppSelector} from "@/lib/hooks";
 import {setAccessToken, setTokens} from "@/lib/reducers/userSlice";
-import {UseConfirmModal} from "@/app/hooks/useConfirmModal";
+import {useConfirmModal} from "@/app/hooks/useConfirmModal";
 
 const AuthButtons: FC = () => {
     const {access, refresh} = useAppSelector(state => state.userReducer)
@@ -23,7 +23,7 @@ const AuthButtons: FC = () => {
         logoutRequest({refresh})
         dispatch(setTokens({access: '', refresh: ''}))
     }
-    const [ConfirmLogoutModal, openConfirmLogoutModal] = UseConfirmModal(logout, ', что хотите выйти')
+    const [ConfirmLogoutModal, openConfirmLogoutModal] = useConfirmModal(logout, ', что хотите выйти')
 
     useEffect(() => {
         if (access && refresh) {
