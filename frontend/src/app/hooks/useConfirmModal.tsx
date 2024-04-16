@@ -8,9 +8,16 @@ type ReturnParams = [
 
 export const UseConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnParams => {
     const [isModalOpened, setIsModalOpened] = useState(false)
+    const [visible, setVisible] = useState(true)
 
-    const openModal = () => setIsModalOpened(true)
-    const closeModal = () => setIsModalOpened(false)
+    const openModal = () => {
+        setVisible(true)
+        setIsModalOpened(true)
+    }
+    const closeModal = () => {
+        setVisible(false)
+        setIsModalOpened(false)
+    }
 
     const confirm = () => {
         onConfirm()
@@ -18,7 +25,7 @@ export const UseConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnP
     }
 
     const Modal: FC = () => isModalOpened &&
-        <ConfirmModal confirm={confirm} close={closeModal} text={text}/>
+        <ConfirmModal confirm={confirm} close={closeModal} visible={visible} text={text}/>
 
     return [Modal, openModal]
 };
