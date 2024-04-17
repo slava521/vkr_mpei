@@ -1,11 +1,12 @@
 "use client"
 
-import React, {FC, useEffect} from "react";
+import React, {FC, useEffect, useMemo, useState} from "react";
 
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
 import Chart from "@/app/components/chart/chart";
 import ErrorMessage from "@/app/components/errorMessage/errorMessage";
+import ParamsInformationModal from "@/app/components/paramsInformationModal/paramsInformationModal";
 import Button from "@/app/components/ui/button/button";
 import Checkbox from "@/app/components/ui/checkbox/checkbox";
 import Container from "@/app/components/ui/container/container";
@@ -27,17 +28,16 @@ type Props = {
     endpoint: EndpointType
 }
 
-const handleParamClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-}
-
 const ChartPage: FC<Props> = ({title, params, endpoint}) => {
-    const options = params.map(param => param.id)
+    const options = useMemo(() => params.map(param => param.id), [params])
+    const [isModalOpened, setIsModalOpened] = useState(false)
+    const [visible, setVisible] = useState(true)
     const searchParams = useSearchParams()
     const searchDateFrom = searchParams.get('date_from')
     const searchDateTo = searchParams.get('date_to')
     const searchEverySecond = searchParams.get('every_second')
     const searchWeatherParam = searchParams.get('param')
+
     const {replace} = useRouter()
     const pathname = usePathname()
     const [getValues, {data: chartData, error, isLoading}] = weatherAPI.useGetChartValuesMutation()
@@ -76,6 +76,16 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
             params.delete('every_second')
         }
         replace(`${pathname}?${params.toString()}`)
+    }
+
+    const handleParamClick = () => {
+        setVisible(true)
+        setIsModalOpened(true)
+    }
+
+    const closeModal = () => {
+        setVisible(false)
+        setIsModalOpened(false)
     }
 
     return (
@@ -125,6 +135,11 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
                             </div>
                             <Button buttonType='submit' text='Построить график' right/>
                         </form>
+                        {isModalOpened && <ParamsInformationModal
+                            close={closeModal}
+                            visible={visible}
+                            paramsInformation={params}
+                        />}
                     </div>
                 </div>
                 <div className={classes.chartPage__main}>

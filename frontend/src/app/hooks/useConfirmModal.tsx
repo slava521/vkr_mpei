@@ -9,7 +9,7 @@ type ReturnParams = [
 
 export const useConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnParams => {
     const [isModalOpened, setIsModalOpened] = useState(false)
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
 
     const openModal = () => {
         setVisible(true)
