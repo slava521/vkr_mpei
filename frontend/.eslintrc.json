@@ -47,6 +47,7 @@
       }
     ],
     "unused-imports/no-unused-imports": "error",
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "no-console": "warn"
   }
 }

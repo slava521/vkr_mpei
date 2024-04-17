@@ -40,7 +40,6 @@ const DownloadFile: FC<Props> = (
 
     useEffect(() => {
         if (data && !error && !isLoading) {
-            console.log(data)
             const contentType = fileType === 'csv'
                 ? 'text/csv'
                 : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
