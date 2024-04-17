@@ -1,8 +1,9 @@
 'use client'
 
-import React, {FC, memo, useEffect, useState} from "react";
+import React, {FC, memo, useState} from "react";
 
 import Button from "@/app/components/ui/button/button";
+import ModalBase from "@/app/components/ui/modalBase/modalBase";
 
 import classes from "./confirmModal.module.scss";
 
@@ -14,32 +15,21 @@ type Props = {
 }
 
 const ConfirmModal: FC<Props> = memo(({confirm, close, visible, text}) => {
-    const [visibilityClass, setVisibilityClass] = useState('')
-    useEffect(() => {
-        visible && setVisibilityClass(classes['confirmModal--show'])
-    }, [visible]);
-
-    const handleClose = () => {
-        setVisibilityClass('')
-        setTimeout(()=>close(), 200)
-    }
+    const [handleClose, setHandleClose] = useState<VoidFunction>(()=>()=>{})
 
     return (
-        <div className={`${classes.confirmModal} ${visibilityClass}`}>
-            <div onClick={handleClose} className={classes.confirmModal__bg}/>
-            <div className={classes.confirmModal__modal}>
-                <div className={classes.confirmModal__modal__header}>
-                    <h4>Подтверждение</h4>
-                </div>
-                <div className={classes.confirmModal__modal__text}>
-                    <p>Вы уверены{text}?</p>
-                </div>
-                <div className={classes.confirmModal__modal__buttons}>
-                    <Button buttonType='button' text='Подтвердить' onClick={confirm} small/>
-                    <Button buttonType='button' text='Отменить' onClick={handleClose} small/>
-                </div>
+        <ModalBase visible={visible} close={close} setHandleClose={setHandleClose}>
+            <div className={classes.confirmModal__header}>
+                <h4>Подтверждение</h4>
             </div>
-        </div>
+            <div className={classes.confirmModal__text}>
+                <p>Вы уверены{text}?</p>
+            </div>
+            <div className={classes.confirmModal__buttons}>
+                <Button buttonType='button' text='Подтвердить' onClick={confirm} small/>
+                <Button buttonType='button' text='Отменить' onClick={handleClose} small/>
+            </div>
+        </ModalBase>
     );
 });
 
