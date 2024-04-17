@@ -112,11 +112,17 @@
                 &:after {
                     transform: rotate(45deg) translate(4px);
                 }
+            }
+        }
 
-                & .active {
-                    &:before, &:after {
-                        background: #d45f93;
-                    }
+        &__active {
+            &:before, &:after {
+                background: #d45f93;
+            }
+
+            &:hover {
+                &:before, &:after {
+                    background: #d45f93;
                 }
             }
         }
