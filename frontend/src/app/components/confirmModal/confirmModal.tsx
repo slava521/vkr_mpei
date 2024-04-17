@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, memo, useEffect, useState} from "react";
 
 import Button from "@/app/components/ui/button/button";
 
@@ -13,7 +13,7 @@ type Props = {
     text?: string,
 }
 
-const ConfirmModal: FC<Props> = ({confirm, close, visible, text}) => {
+const ConfirmModal: FC<Props> = memo(({confirm, close, visible, text}) => {
     const [visibilityClass, setVisibilityClass] = useState('')
     useEffect(() => {
         visible && setVisibilityClass(classes['confirmModal--show'])
@@ -41,6 +41,8 @@ const ConfirmModal: FC<Props> = ({confirm, close, visible, text}) => {
             </div>
         </div>
     );
-};
+});
+
+ConfirmModal.displayName = 'ConfirmModal'
 
 export default ConfirmModal;

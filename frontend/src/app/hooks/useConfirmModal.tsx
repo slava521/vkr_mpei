@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, memo, useMemo, useState} from "react";
 
 import ConfirmModal from "@/app/components/confirmModal/confirmModal";
 
@@ -25,8 +25,16 @@ export const useConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnP
         closeModal()
     }
 
-    const Modal: FC = () => isModalOpened &&
-        <ConfirmModal confirm={confirm} close={closeModal} visible={visible} text={text}/>
+    const Modal: FC = useMemo(
+        () => {
+            const ModalComponent: FC = memo(() => isModalOpened &&
+                <ConfirmModal confirm={confirm} close={closeModal} visible={visible} text={text}/>
+            )
+            ModalComponent.displayName = 'Modal'
+            return ModalComponent
+        }
+        , [isModalOpened, visible, text]
+    )
 
     return [Modal, openModal]
 };

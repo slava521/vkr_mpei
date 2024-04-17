@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FC, useEffect} from "react";
+import React, {FC, useCallback, useEffect} from "react";
 
 import Link from "next/link";
 
@@ -22,10 +22,10 @@ const AuthButtons: FC = () => {
     const [refreshToken, {error: refreshError, data: refreshData}] = userAPI.useRefreshUserMutation()
     const dispatch = useAppDispatch()
 
-    const logout = () => {
+    const logout = useCallback(() => {
         logoutRequest({refresh})
         dispatch(setTokens({access: '', refresh: ''}))
-    }
+    }, [refresh])
     const [ConfirmLogoutModal, openConfirmLogoutModal] = useConfirmModal(logout, ', что хотите выйти')
 
     useEffect(() => {
@@ -71,7 +71,6 @@ const AuthButtons: FC = () => {
                         Выход
                     </button>
                 </div>
-                <ConfirmLogoutModal/>
             </>
             }
             {(!!error || !access) && <>
@@ -89,8 +88,8 @@ const AuthButtons: FC = () => {
                         Регистрация
                     </Link>
                 </div>
-            </>
-            }
+            </>}
+            <ConfirmLogoutModal/>
         </div>
     );
 };
