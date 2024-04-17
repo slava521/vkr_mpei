@@ -131,12 +131,15 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
                     <div className={classes.chartPage__main__chart}>
                         <div
                             className={`${classes.chartPage__main__chart__header} ${
-                                searchWeatherParam && chartData?.values.length
+                                searchWeatherParam && !isLoading && chartData !== undefined
                                     ? classes.chartPage__main__chart__header__active
                                     : ''
                             }`}
                         >
-                            График параметра {searchWeatherParam}
+                            {!isLoading && (chartData?.values.length !== 0
+                                ? `График параметра ${searchWeatherParam}`
+                                : 'Данные за указанный период отсутствуют'
+                            )}
                         </div>
                         <div className={classes.chartPage__main__chart__bg}>
                             <Chart
