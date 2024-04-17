@@ -95,7 +95,7 @@ const Chart: FC<Props> = ({labels, values, param, colors, width, bar}) => {
         labels,
         datasets: [{
             ...standardDataset,
-            fill: true,
+            fill: 'start',
             tension: 0.2,
             pointRadius: 1.5
         }]
