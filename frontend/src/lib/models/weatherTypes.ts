@@ -2,9 +2,9 @@ export type EndpointType = 'meteo' | 'wind' | 'invertor'
 
 export type TableRequestType = {
     endpoint: EndpointType,
-    page: number,
-    dateFrom: string,
-    dateTo: string,
+    page?: number,
+    dateFrom?: string,
+    dateTo?: string,
 }
 
 export type TableResponseType = {
@@ -30,7 +30,7 @@ export type ChartResponseType = {
 export type DownloadRequestType = {
     endpoint: EndpointType
     fileType: 'csv' | 'xlsx'
-    dateFrom: string,
-    dateTo: string,
+    dateFrom?: string,
+    dateTo?: string,
     accessToken: string
 }

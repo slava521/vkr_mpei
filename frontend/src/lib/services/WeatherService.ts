@@ -15,23 +15,43 @@ export const weatherAPI = createApi({
     }),
     endpoints: (build) => ({
         getTable: build.query<TableResponseType, TableRequestType>({
-            query: (requestParams) => ({
-                url: `${requestParams.endpoint}/?page=${requestParams.page}&date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}`,
-            })
+            query: (requestParams) => {
+                const queryParams = new URLSearchParams()
+                requestParams.page && queryParams.set('page', requestParams.page + '')
+                requestParams.dateFrom && queryParams.set('date_from', requestParams.dateFrom)
+                requestParams.dateTo && queryParams.set('date_to', requestParams.dateTo)
+                return {
+                    url: `${requestParams.endpoint}/?${queryParams.toString()}`,
+                }
+            }
         }),
         getChartValues: build.mutation<ChartResponseType, ChartRequestType>({
-            query: (requestParams) => ({
-                url: `${requestParams.endpoint}/${requestParams.param}/?date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}&every_second=${requestParams.everySecond ?? ''}`,
-            })
+            query: (requestParams) => {
+                const queryParams = new URLSearchParams()
+                requestParams.everySecond && queryParams.set('every_second', requestParams.everySecond + '')
+                queryParams.set('date_from', requestParams.dateFrom)
+                queryParams.set('date_to', requestParams.dateTo)
+                return {
+                    url: `${requestParams.endpoint}/${requestParams.param}/?${queryParams.toString()}`,
+                }
+            }
         }),
         downloadFile: build.mutation<any, DownloadRequestType>({
-            query: (requestParams) => ({
-                url: `${requestParams.endpoint}-file/${requestParams.fileType}/?date_from=${requestParams.dateFrom}&date_to=${requestParams.dateTo}`,
-                headers: {
-                    'Authorization': `Bearer ${requestParams.accessToken}`,
-                },
-                responseHandler: 'content-type'
-            })
+            query: (requestParams) => {
+                const queryParams = new URLSearchParams()
+                requestParams.dateFrom && queryParams.set('date_from', requestParams.dateFrom)
+                requestParams.dateTo && queryParams.set('date_to', requestParams.dateTo)
+                return {
+                    url: `${requestParams.endpoint}-file/${requestParams.fileType}/?${queryParams.toString()}`,
+                    headers:
+                        {
+                            'Authorization':
+                                `Bearer ${requestParams.accessToken}`,
+                        }
+                    ,
+                    responseHandler: 'content-type'
+                }
+            }
         }),
     })
 })
