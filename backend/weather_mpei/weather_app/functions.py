@@ -52,10 +52,13 @@ def chart_values(model, allowed_params, request, **kwargs):
 
     labels = []
     values = []
-
-    if bool(every_second) and eval(every_second.title()):
+    try:
         datetime_to = datetime.strptime(date_to, "%Y-%m-%d %H:%M:%S")
         datetime_from = datetime.strptime(date_from, "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        raise ParseError(detail="Неправильный формат даты, должен быть YYYY-MM-DD HH:MM:SS")
+
+    if bool(every_second) and eval(every_second.title()):
         date_range = datetime_to - datetime_from
         if date_range.total_seconds() > 60 * 60 * 2:
             raise ParseError(detail='Посекундно можно выводить максимум за 2 часа')
