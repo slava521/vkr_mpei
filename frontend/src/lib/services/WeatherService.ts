@@ -8,10 +8,12 @@ import {
     TableResponseType
 } from "@/lib/models/weatherTypes";
 
+console.log(process)
+
 export const weatherAPI = createApi({
     reducerPath: 'weatherAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8000/api/v1/'
+        baseUrl: process.env.NEXT_PUBLIC_BACKEND_LINK
     }),
     endpoints: (build) => ({
         getTable: build.query<TableResponseType, TableRequestType>({

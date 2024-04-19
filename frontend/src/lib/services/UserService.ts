@@ -12,9 +12,9 @@ import {
 export const userAPI = createApi({
     reducerPath: 'userAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8000/api/v1/auth/'
+        baseUrl: process.env.NEXT_PUBLIC_BACKEND_LINK + 'auth/'
     }),
-    endpoints: (build)=> ({
+    endpoints: (build) => ({
         registerUser: build.mutation<UserInformationType, RegisterQueryType>({
             query: (body) => ({
                 url: 'users/',
