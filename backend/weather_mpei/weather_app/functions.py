@@ -13,7 +13,9 @@ from rest_framework.response import Response
 from weather_mpei.settings import BASE_DIR
 
 
-def date_filter(request, model):
+def date_filter(request, model, allowed_params=None):
+    if allowed_params is None:
+        allowed_params = []
     date_from = request.query_params.get('date_from', default=None)
     date_to = request.query_params.get('date_to', default=None)
     query_set = model.objects.all()
@@ -33,7 +35,25 @@ def date_filter(request, model):
                 query_set = model.objects.filter(date__range=(date_from, date_to))
     except ValidationError as e:
         raise ParseError(e.error_list)
-    return query_set.order_by('date').reverse()
+
+    order_by_param = request.query_params.get('order_by', default='date')
+    if order_by_param == "":
+        order_by_param = 'date'
+    allowed_params.append('id')
+    allowed_params.append('date')
+    if order_by_param not in allowed_params:
+        raise ParseError(detail="Неверный параметр order_by")
+
+    ascending = request.query_params.get('ascending', default=False)
+    ascending_allowed_params = [False, '', 'false', 'true']
+    if ascending not in ascending_allowed_params:
+        raise ParseError(detail="every_second может быть только false, true или ''")
+
+    query_set = query_set.order_by(order_by_param, 'date')
+    if bool(ascending) and eval(ascending.title()):
+        return query_set
+    else:
+        return query_set.reverse()
 
 
 def chart_values(model, allowed_params, request, **kwargs):

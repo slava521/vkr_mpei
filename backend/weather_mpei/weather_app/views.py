@@ -21,7 +21,7 @@ class MeteoAPIList(generics.ListAPIView):
     pagination_class = APIListPagination
 
     def get_queryset(self):
-        return date_filter(self.request, MeteoData)
+        return date_filter(self.request, MeteoData, MeteoDataParams)
 
 
 class WindAPIList(generics.ListAPIView):
@@ -29,7 +29,7 @@ class WindAPIList(generics.ListAPIView):
     pagination_class = APIListPagination
 
     def get_queryset(self):
-        return date_filter(self.request, WindData)
+        return date_filter(self.request, WindData, WindDataParams)
 
 
 class InvertorAPIList(generics.ListAPIView):
@@ -37,7 +37,7 @@ class InvertorAPIList(generics.ListAPIView):
     pagination_class = APIListPagination
 
     def get_queryset(self):
-        return date_filter(self.request, Invertor)
+        return date_filter(self.request, Invertor, InvertorParams)
 
 
 class MeteoDataParamAPIView(generics.RetrieveAPIView):
