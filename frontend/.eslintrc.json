@@ -48,6 +48,6 @@
     ],
     "unused-imports/no-unused-imports": "error",
     "@next/next/no-img-element": "off",
-    "no-console": "warn"
+    "no-console": "error"
   }
 }
