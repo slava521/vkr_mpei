@@ -8,8 +8,6 @@ import {
     TableResponseType
 } from "@/lib/models/weatherTypes";
 
-console.log(process)
-
 export const weatherAPI = createApi({
     reducerPath: 'weatherAPI',
     baseQuery: fetchBaseQuery({
