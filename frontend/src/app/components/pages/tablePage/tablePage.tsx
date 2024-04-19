@@ -37,12 +37,16 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
     const paramsDateTo = searchParams.get('dateTo')
     const dateTo = formatDateString(paramsDateTo)
     const dateToRu = formatDateString(paramsDateTo, true)
+    const orderBy = searchParams.get('order_by') || 'date'
+    const ascending = searchParams.get('ascending') || ''
 
     const {currentData} = weatherAPI.useGetTableQuery({
         endpoint,
         page,
         dateFrom,
-        dateTo
+        dateTo,
+        orderBy,
+        ascending
     })
     const {access} = useAppSelector(state => state.userReducer)
     const {isLoading, error} = userAPI.useVerifyUserQuery({token: access})

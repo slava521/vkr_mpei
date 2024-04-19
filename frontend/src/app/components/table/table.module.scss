@@ -53,6 +53,26 @@
             &:hover &__description {
                 display: inline-block;
             }
+
+            &__button {
+                display: flex;
+                justify-content: center;
+                gap: 3px;
+                align-items: center;
+                color: inherit;
+                background: inherit;
+                font-size: inherit;
+                font-family: inherit;
+                width: 100%;
+            }
+
+            &__orderBy_img {
+                height: 8px;
+
+                &__ascending {
+                    transform: rotate(180deg);
+                }
+            }
         }
     }
 }

@@ -5,6 +5,8 @@ export type TableRequestType = {
     page?: number,
     dateFrom?: string,
     dateTo?: string,
+    orderBy?: string,
+    ascending?: string,
 }
 
 export type TableResponseType = {

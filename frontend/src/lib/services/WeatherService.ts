@@ -20,6 +20,8 @@ export const weatherAPI = createApi({
                 requestParams.page && queryParams.set('page', requestParams.page + '')
                 requestParams.dateFrom && queryParams.set('date_from', requestParams.dateFrom)
                 requestParams.dateTo && queryParams.set('date_to', requestParams.dateTo)
+                requestParams.orderBy && queryParams.set('order_by', requestParams.orderBy)
+                requestParams.ascending && queryParams.set('ascending', requestParams.ascending)
                 return {
                     url: `${requestParams.endpoint}/?${queryParams.toString()}`,
                 }
