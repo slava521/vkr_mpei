@@ -8,6 +8,7 @@
     "dev": "concurrently \"npm run dev:back\" \"npm run dev:front\"",
     "install:back": "cd backend && npm run install",
     "install:front": "cd frontend && npm i",
-    "postinstall": "npm run install:back && npm run install:front"
+    "postinstall": "npm run install:back && npm run install:front",
+    "front:build": "cd frontend && npm run build"
   }
 }
