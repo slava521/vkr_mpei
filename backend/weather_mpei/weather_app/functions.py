@@ -129,13 +129,14 @@ def download_csv_data(request, model, filepath):
             writer.writerow(data)
 
 
-def download_xlsx_data(request, model):
-    output = io.BytesIO()
-    book = xlsxwriter.Workbook(output, {'in_memory': True})
+def download_xlsx_data(request, model, filepath):
+    query_set = date_filter(request, model)
+    file = open(filepath, 'w+', encoding='utf-8')
+    file.close()
+    book = xlsxwriter.Workbook(filepath)
     sheet = book.add_worksheet()
     row = 0
     column = 0
-    query_set = date_filter(request, model)
     headers = [str(data.name) for data in query_set[0]._meta.fields]
     for header in headers:
         sheet.write(row, column, header)
@@ -150,8 +151,6 @@ def download_xlsx_data(request, model):
         column = 0
         row += 1
     book.close()
-    output.seek(0)
-    return output
 
 
 def download_file_response(model, filename, request, **kwargs):
@@ -160,24 +159,19 @@ def download_file_response(model, filename, request, **kwargs):
         raise ParseError(detail='Неверный тип файла')
     temp_filename = datetime.now().strftime("f%d%m%Y%H%M%S%f")
     filepath = os.path.join(str(BASE_DIR), "weather_app", "files", temp_filename + "." + file_type)
-    xlsx_data = None
     if file_type == 'csv':
         download_csv_data(request, model, filepath)
     if file_type == 'xlsx':
-        xlsx_data = download_xlsx_data(request, model)
+        download_xlsx_data(request, model, filepath)
 
     content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     if file_type == 'csv':
         content_type = 'text/csv'
+    to_download = open(filepath, 'rb')
     response = HttpResponse(content_type=content_type)
-    if file_type == 'csv':
-        to_download = open(filepath, 'rb')
-        response.write(base64.b64encode(to_download.read()).decode('utf-8'))
-        to_download.close()
-        os.remove(filepath)
-    else:
-        response.write(base64.b64encode(xlsx_data.read()).decode('utf-8'))
-        xlsx_data.close()
+    response.write(base64.b64encode(to_download.read()).decode('utf-8'))
+    to_download.close()
+    os.remove(filepath)
 
     response['Content-Disposition'] = 'attachment; filename="' + filename + "." + file_type + '"'
     return response
