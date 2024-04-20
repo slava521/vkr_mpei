@@ -1,4 +1,5 @@
 /.pip
 /venv
 
-/weather_mpei/weather_app/files/
+/weather_mpei/weather_app/files/*
+!/weather_mpei/weather_app/files/*.gitkeep
