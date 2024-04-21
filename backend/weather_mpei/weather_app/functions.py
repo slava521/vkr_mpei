@@ -100,13 +100,8 @@ def chart_values(model, allowed_params, request, **kwargs):
             offset = i * limit + limit
             if offset >= length:
                 offset = length - 1
-            current_values = (model.objects.filter(id__range=(ids[i * limit]['id'], ids[offset]['id']))
+            current_values = (model.objects.filter(id__range=[ids[i * limit]['id'], ids[offset]['id']])
                               .values(param, 'date'))
-            chances = 3
-            while len(current_values) == 0 and chances > 0:
-                current_values = (model.objects.filter(id__range=(ids[i * limit]['id'], ids[offset]['id']))
-                                  .values(param, 'date'))
-                chances -= 1
             if len(current_values) == 0:
                 continue
             temp_sum = 0
