@@ -88,7 +88,7 @@ def chart_values(model, allowed_params, request, **kwargs):
             values.append(data[param])
         return Response({'labels': labels, 'values': values})
 
-    ids = model.objects.filter(date__range=(date_from, date_to)).values('id')
+    ids = model.objects.filter(date__range=(date_from, date_to)).order_by('id').values('id')
 
     length = len(ids)
     if length == 0:
