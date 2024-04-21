@@ -39,6 +39,8 @@ const Input: FC<Props> = (
                 placeholder={label}
                 defaultValue={defaultValue}
                 required={required}
+                min={inputType === 'datetime-local' ? '1900-01-01T00:00' : undefined}
+                max={inputType === 'datetime-local' ? '2100-12-31T23:59' : undefined}
             />
             <label htmlFor={id} className={classes.input__label}>{label}</label>
         </div>
