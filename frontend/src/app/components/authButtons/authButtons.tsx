@@ -82,14 +82,14 @@ const AuthButtons: FC<Props> = ({closeMenu}) => {
                 <div className={classes.authButtons__loading}>
                     <Link href='/login' className={`${classes.authButtons__btn} ${classes.authButtons__btn__link} ${
                         verifyLoading ? classes.authButtons__btn__link__loading : ''
-                    }`}>
+                    }`} onClick={closeMenu}>
                         Войти
                     </Link>
                 </div>
                 <div className={classes.authButtons__loading}>
                     <Link href='/reg' className={`${classes.authButtons__btn} ${classes.authButtons__btn__link} ${
                         verifyLoading ? classes.authButtons__btn__link__loading : ''
-                    }`}>
+                    }`} onClick={closeMenu}>
                         Регистрация
                     </Link>
                 </div>
