@@ -82,9 +82,9 @@ def chart_values(model, allowed_params, request, **kwargs):
         date_range = datetime_to - datetime_from
         if date_range.total_seconds() > 60 * 60 * 2:
             raise ParseError(detail='Посекундно можно выводить максимум за 2 часа')
-        dataset = model.objects.filter(date__range=(date_from, date_to)).values(param, 'date')
+        dataset = model.objects.filter(date__range=(date_from, date_to)).order_by('date').values(param, 'date')
         for data in dataset:
-            labels.append(data['date'])
+            labels.append(data['date'].astimezone().strftime('%d.%m.%Y %H:%M:%S'))
             values.append(data[param])
         return Response({'labels': labels, 'values': values})
 
@@ -96,11 +96,11 @@ def chart_values(model, allowed_params, request, **kwargs):
 
     limit = int(length / 40)
     if limit != 0:
-        for i in range(40):
-            offset = i * limit + limit
+        for i in range(0, length, limit + 1):
+            offset = i + limit
             if offset >= length:
                 offset = length - 1
-            current_values = (model.objects.filter(id__range=[ids[i * limit]['id'], ids[offset]['id']])
+            current_values = (model.objects.filter(id__range=[ids[i]['id'], ids[offset]['id']])
                               .values(param, 'date'))
             if len(current_values) == 0:
                 continue
@@ -109,13 +109,13 @@ def chart_values(model, allowed_params, request, **kwargs):
                 temp_sum += float(value[param])
             avg = temp_sum / len(current_values)
 
-            labels.append(current_values[len(current_values) - 1]['date'].strftime('%d.%m.%Y %H:%M'))
+            labels.append(current_values[len(current_values) - 1]['date'].astimezone().strftime('%d.%m.%Y %H:%M'))
             values.append(avg)
     else:
         for i in range(length):
-            current_value = model.objects.filter(id=ids[i]).values(param, 'date')
-            labels.append(current_value['date'].strftime('%d.%m.%Y %H:%M'))
-            values.append(current_value[param])
+            current_value = model.objects.filter(id=ids[i]['id']).order_by('date').values(param, 'date')
+            labels.append(current_value[0]['date'].astimezone().strftime('%d.%m.%Y %H:%M'))
+            values.append(current_value[0][param])
 
     return Response({'labels': labels, 'values': values})
 
