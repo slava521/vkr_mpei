@@ -1,0 +1,37 @@
+@use 'sass:map';
+
+$primary-color: #efeff5;
+$secondary-color: #978be4;
+$tertiary-color: #d45f93;
+
+$input-primary: #7668cb;
+$input-lighter: #8c7ede;
+
+$primary-bg: #1a1a1f;
+$primary-bg-lighter: #222127;
+$secondary-bg: #333;
+
+$error-color: #910040;
+$error-bg: #d35f94;
+
+$black: #000;
+
+$filter-secondary-color: invert(61%) sepia(44%) saturate(736%) hue-rotate(205deg) brightness(89%) contrast(101%);
+$filter-tertiary-color: invert(63%) sepia(88%) saturate(2779%) hue-rotate(298deg) brightness(89%) contrast(85%);
+
+
+$main-fs: 14px;
+
+$breakpoints: (
+    xs: 320px,
+    sm: 426px,
+    md: 768px,
+    lg: 1024px,
+    sl: 1440px
+);
+
+@mixin media($name) {
+    @media (max-width: map.get($breakpoints, $name)) {
+        @content;
+    }
+}

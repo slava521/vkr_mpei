@@ -1,3 +1,5 @@
+@import "@/app/variables";
+
 .button {
     -webkit-appearance: none;
     width: auto;
@@ -6,11 +8,10 @@
     justify-content: center;
     align-items: center;
 	padding: 15px 40px;
-    background-color: #7668cb;
-    color: #efeff5;
-    font-size: 14px;
+    background-color: $input-primary;
+    color: $primary-color;
+    font-size: 1rem;
     font-weight: 500;
-    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.13);
     border: none;
     transition: all 0.3s ease;
     outline: 0;
@@ -30,8 +31,8 @@
 
     &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 2px 6px -1px rgba(182, 157, 230, 0.65);
-        background: #8c7ede;
+        box-shadow: 0 2px 6px -1px rgba($input-lighter, 0.65);
+        background: $input-lighter;
 
         &:active {
             transform: scale(0.99);
@@ -41,5 +42,11 @@
     &__loadingCursor {
         border-radius: 25px;
         cursor: progress;
+    }
+}
+
+@include media(sm) {
+    .button {
+        padding: 12px 30px;
     }
 }

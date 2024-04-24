@@ -1,22 +1,25 @@
+@import "@/app/variables";
+
 .mainChart {
     height: 350px;
-    width: 50%;
-    margin-top: 30px;
-    padding: 0 5px;
+    min-width: 450px;
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
 
     &__title {
         text-align: center;
         margin-bottom: 5px;
         width: 100%;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 1rem;
     }
 
     &__bg {
+        flex: 1 1;
         position: relative;
         width: 100%;
-        height: 100%;
-        background: #333;
+        background: $secondary-bg;
         border-radius: 6px;
         display: flex;
         flex-direction: column;
@@ -33,18 +36,30 @@
         &__link {
             background: transparent;
             transition: all 0.2s ease 0s;
-            color: #efeff5;
+            color: $primary-color;
             cursor: pointer;
 
             &:hover {
-                color: #978be4;
+                color: $secondary-color;
             }
 
             &__active {
                 cursor: default;
                 pointer-events: none;
-                color: #978be4;
+                color: $secondary-color;
             }
         }
+    }
+}
+
+@include media(md) {
+    .mainChart {
+        min-width: 400px;
+    }
+}
+
+@include media(sm) {
+    .mainChart {
+        min-width: 250px;
     }
 }

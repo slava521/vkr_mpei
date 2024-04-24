@@ -1,38 +1,59 @@
+@import "@/app/variables";
+
 .radioButton {
     display: none;
 
     &__label {
         display: inline-flex;
-        font-size: 16px;
+        font-size: 1.15rem;
         align-items: center;
         position: relative;
         cursor: pointer;
+        gap: 10px;
 
         &:before {
             content: '';
             align-self: flex-start;
             flex: 0 0 24px;
             height: 24px;
-            background: #efeff5;
+            background: $primary-color;
             border-radius: 50%;
-            margin: 0 10px 0 0;
         }
 
         &:after {
             content: '';
             position: absolute;
-            top: 4px;
-            left: 4px;
+            top: 50%;
+            left: 12px;
             width: 16px;
             height: 16px;
-            background: #8c7ede;
+            background: $input-lighter;
             border-radius: 50%;
-            transform: scale(0);
+            transform: translate(-50%, -50%) scale(0);
             transition: all 0.3s ease 0s;
         }
     }
 
     &:checked + &__label:after {
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@include media(sm) {
+    .radioButton {
+        &__label {
+            gap: 8px;
+
+            &:before {
+                flex: 0 0 20px;
+                height: 20px;
+            }
+
+            &:after {
+                left: 10px;
+                width: 14px;
+                height: 14px;
+            }
+        }
     }
 }

@@ -20,8 +20,6 @@ export default function Home() {
                     endpoint='meteo'
                     param='PA'
                 />
-            </div>
-            <div className={classes.mainCharts}>
                 <MainChart
                     title='Скорость ветра (м/с) за 3 сек'
                     colors={WIND_SPEED_COLORS}

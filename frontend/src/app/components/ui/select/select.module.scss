@@ -1,22 +1,24 @@
+@import "@/app/variables";
+
 .select {
-    font-size: 16px;
+    font-size: 1.15rem;
     padding: 0;
     height: 56px;
     width: 100%;
     border: none;
-    border-bottom: solid 2px #efeff540;
+    border-bottom: solid 2px rgba($primary-color, 0.25);
     background: inherit;
     transition: all 0.3s ease;
     font-weight: 400;
-    color: #efeff5;
+    color: $primary-color;
     list-style: none;
 
     &:focus-visible {
-        border-bottom: solid 2px #7668cb;
+        border-bottom: solid 2px $input-primary;
         outline: 0;
     }
 
     &__option {
-        background: #333;
+        background: $secondary-bg;
     }
 }

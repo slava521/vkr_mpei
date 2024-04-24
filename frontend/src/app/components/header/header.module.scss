@@ -1,41 +1,99 @@
+@import "@/app/variables";
+
 .header {
-    position: fixed;
+    position: sticky;
     width: 100%;
     left: 0;
     top: 0;
-    z-index: 50;
-    border-bottom: 1px solid #29292e;
-
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #1a1a1f;
-        z-index: 2;
-    }
+    z-index: 10;
+    background: $primary-bg;
+    border-bottom: 2px solid $primary-bg-lighter;
 
     &__body {
         position: relative;
         display: flex;
         justify-content: space-between;
+        gap: 30px;
         height: 64px;
         align-items: center;
-    }
+        z-index: 2;
 
-    &__logo {
-        height: 100%;
-        flex: 0 0 60px;
-        padding: 3px 0;
-        position: relative;
-        z-index: 3;
+        &__menu {
+            flex: 1 0 auto;
+            display: flex;
+            height: 100%;
+            justify-content: space-between;
 
-        img {
-            max-width: 100%;
+            &__bg {
+                opacity: 0;
+            }
+        }
+
+        &__menu_img {
+            display: none;
+            height: 60%;
+            background: transparent;
+            cursor: pointer;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        &__logo {
+            height: 90%;
+            flex: 1 1 60px;
+            padding: 3px 0;
+            position: relative;
+            z-index: 3;
+
+            img {
+                max-height: 100%;
+            }
         }
     }
+}
 
+@include media(lg) {
+    .header {
+        &__body {
+            height: 50px;
 
+            &__menu {
+                flex: 0;
+                position: fixed;
+                top: 0;
+                right: -250px;
+                z-index: 20;
+                height: 100vh;
+                flex-direction: column;
+                gap: 10px;
+                max-width: 230px;
+                width: 100%;
+                background: $primary-bg;
+                padding: 30px 20px;
+                transition: all 0.3s ease;
+                overflow-y: auto;
+
+                &--opened {
+                    right: 0;
+                }
+
+                &--opened + &__bg {
+                    position: fixed;
+                    width: 100vw;
+                    height: 100vh;
+                    top: 0;
+                    left: 0;
+                    z-index: 19;
+                    opacity: 0.4;
+                    background: $primary-bg;
+                }
+            }
+
+            &__menu_img {
+                display: block;
+            }
+        }
+    }
 }

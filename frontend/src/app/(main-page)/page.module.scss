@@ -1,5 +1,8 @@
 .mainCharts {
     display: flex;
     justify-content: space-between;
-    margin: 0px -5px;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 15px;
+    margin-top: 20px;
 }

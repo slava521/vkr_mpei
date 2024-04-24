@@ -53,7 +53,7 @@ const AuthPage: FC<Props> = (
     return (
         <div className={classes.authPage}>
             <div className={classes.authPage__body}>
-                <div className={classes['authPage__form--left']}/>
+                <div className={classes.authPage__gradient}/>
                 <form className={classes.authPage__form} onSubmit={onSubmit}>
                     <h4 className={classes.authPage__form__title}>{title}</h4>
                     <ErrorMessage error={error} loading={loading} className={classes.authPage__form__error}/>

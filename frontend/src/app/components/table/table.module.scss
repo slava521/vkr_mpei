@@ -1,16 +1,20 @@
+@import "@/app/variables";
+
 .table {
     margin-top: 5px;
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    min-width: 750px;
+    font-size: 0.9rem;
 
     &__row {
         &:nth-child(odd) {
-            background: #333;
+            background: $secondary-bg;
         }
 
         &:nth-child(even) {
-            background: #222127;
+            background: $primary-bg-lighter;
         }
     }
 
@@ -20,16 +24,15 @@
 
 
         &__header {
-            font-size: 10px;
+            font-size: 0.8rem;
             position: relative;
-            cursor: default;
 
             &__description {
                 display: none;
                 position: absolute;
                 top: 33px;
                 left: 0;
-                background: rgba(0, 0, 0, 0.9);
+                background: rgba($black, 0.9);
                 padding: 5px;
                 border-radius: 3px;
                 text-align: left;
@@ -42,7 +45,7 @@
                     width: 0;
                     height: 0;
                     border: 7px solid transparent;
-                    border-bottom: 7px solid rgba(0, 0, 0, 0.9);
+                    border-bottom: 7px solid rgba($black, 0.9);
                 }
             }
 
@@ -63,7 +66,9 @@
                 background: inherit;
                 font-size: inherit;
                 font-family: inherit;
+                line-height: inherit;
                 width: 100%;
+                cursor: pointer;
             }
 
             &__orderBy_img {

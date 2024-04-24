@@ -1,3 +1,5 @@
+@import "@/app/variables";
+
 .checkbox {
     position: relative;
     display: flex;
@@ -9,26 +11,25 @@
         position: absolute;
 
         &__label {
-            padding-left: 34px;
+            display: inline-flex;
+            gap: 10px;
+            position: relative;
             cursor: pointer;
+            align-items: center;
             transition: all 0.2s ease 0s;
-            font-size: 16px;
+            font-size: 1.15rem;
 
             &:before {
                 content: '';
                 display: block;
                 width: 24px;
                 height: 24px;
-                border: 2px solid #8c7ede;
+                border: 2px solid $input-lighter;
                 border-radius: 3px;
-                background: #efeff5;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                left: 0;
-                z-index: 1;
+                background: $primary-color;
+                align-self: flex-start;
+                flex: 0 0 24px;
                 transition: all 0.2s ease 0s;
-                margin: 0 10px 0 0;
             }
 
             &:after {
@@ -42,8 +43,8 @@
                 background-size: 16px 16px;
                 position: absolute;
                 top: 50%;
-                left: 3px;
-                transform: translateY(-50%);
+                left: 12px;
+                transform: translate(-50%, -50%);
                 z-index: 2;
                 transition: all 0.2s ease;
             }
@@ -51,8 +52,8 @@
         }
 
         &:checked + &__label:before {
-            background: #8c7ede;
-            border-color: #8c7ede;
+            background: $input-lighter;
+            border-color: $input-lighter;
         }
 
         &:checked + &__label:after {
@@ -60,4 +61,27 @@
         }
     }
 
+}
+
+@include media(sm) {
+    .checkbox {
+        &__input {
+            &__label {
+                gap: 8px;
+
+                &:before {
+                    flex: 0 0 20px;
+                    height: 20px;
+                    width: 20px;
+                }
+
+                &:after {
+                    left: 10px;
+                    width: 14px;
+                    height: 14px;
+                    background-size: 14px 14px;
+                }
+            }
+        }
+    }
 }

@@ -75,14 +75,14 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
         replace(`${pathname}?${params.toString()}`)
     }
 
-    const handleReset = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleReset = () => {
         replace(pathname)
     }
 
     return (
         <Container title={title}>
-            <form className={classes.tableForm} onSubmit={handleSubmit} onReset={handleReset}>
-                <div className={classes.tableForm__inputs}>
+            <form className={classes.tablePage__form} onSubmit={handleSubmit} onReset={handleReset}>
+                <div className={classes.tablePage__form__inputs}>
                     <Input
                         name='dateFrom'
                         label='Начальная дата:'
@@ -96,19 +96,23 @@ const TablePage: FC<Props> = ({title, tableCols, endpoint}) => {
                         defaultValue={paramsDateTo as string}
                     />
                 </div>
-                <Button buttonType='reset' text='Сброс' small/>
-                <Button buttonType='submit' text='Поиск' small/>
+                <div className={classes.tablePage__form__buttons}>
+                    <Button buttonType='reset' text='Сброс' small/>
+                    <Button buttonType='submit' text='Поиск' small/>
+                </div>
             </form>
-            <Table
-                cols={tableCols}
-                loading={isLoading}
-                data={currentData?.results}
-                contentCount={currentData?.count}
-            />
-            <div className={classes.tableForm__footer}>
+            <div className={classes.tablePage__table}>
+                <Table
+                    cols={tableCols}
+                    loading={isLoading}
+                    data={currentData?.results}
+                    contentCount={currentData?.count}
+                />
+            </div>
+            <div className={classes.tablePage__footer}>
                 <PaginationLinks contentCount={currentData?.count}/>
                 {!isLoading && !error && !!currentData?.count &&
-                    <div className={classes.tableForm__footer__buttons}>
+                    <div className={classes.tablePage__footer__buttons}>
                         {fileTypes.map((file) => (
                             <DownloadFile
                                 key={file}

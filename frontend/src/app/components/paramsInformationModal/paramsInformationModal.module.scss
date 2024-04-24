@@ -1,8 +1,11 @@
+@import "@/app/variables";
+
 .paramsInformationModal {
-    background-color: #1a1a1f;
+    background-color: $primary-bg;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 600px;
+    max-width: 90vw;
 }

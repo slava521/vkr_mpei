@@ -2,7 +2,7 @@
 
 import React, {FC, useEffect, useState} from "react";
 
-import Chart from "@/app/components/chart/chart";
+import Chart from "@/app/components/ui/chart/chart";
 import {formatDate} from "@/app/shared/utils/utils";
 import {EndpointType} from "@/lib/models/weatherTypes";
 import {weatherAPI} from "@/lib/services/WeatherService";

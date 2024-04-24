@@ -9,19 +9,19 @@ const Footer = () => {
                 <div className={classes.footer__body}>
                     <div className={classes['footer__body--left']}>
                         <span>© 2023-2024 НИУ МЭИ, кафедра ВМСС</span>
-                        <span>|</span>
+                        <div className={classes.footer__body__divider} />
                         <span>Токмаков Матвей, Семенов Святослав</span>
                     </div>
                     <div className={classes['footer__body--right']}>
                         <a
-                            className={classes.footer__logo}
+                            className={classes.footer__body__logo}
                             href="https://mpei.ru/Structure/Universe/avti/Pages/default.aspx"
                             target='_blank'
                         >
                             <img src="/ivti.png" alt="IVTI"/>
                         </a>
                         <a
-                            className={classes.footer__logo}
+                            className={classes.footer__body__logo}
                             href="https://mpei.ru/structure/universe/IHRE/Pages/default.aspx"
                             target='_blank'
                         >

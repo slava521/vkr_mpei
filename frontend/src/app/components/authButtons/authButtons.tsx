@@ -11,7 +11,11 @@ import {userAPI} from "@/lib/services/UserService";
 
 import classes from "./authButtons.module.scss";
 
-const AuthButtons: FC = () => {
+type Props = {
+    closeMenu: () => void
+}
+
+const AuthButtons: FC<Props> = ({closeMenu}) => {
     const {access, refresh} = useAppSelector(state => state.userReducer)
     const {isLoading: verifyLoading, error} = userAPI.useVerifyUserQuery({token: access}, {
         pollingInterval: 60000,
@@ -23,6 +27,7 @@ const AuthButtons: FC = () => {
     const dispatch = useAppDispatch()
 
     const logout = useCallback(() => {
+        closeMenu()
         logoutRequest({refresh})
         dispatch(setTokens({access: '', refresh: ''}))
     }, [refresh])

@@ -1,3 +1,5 @@
+@import "@/app/variables";
+
 .nav {
     display: flex;
     height: 100%;
@@ -5,16 +7,12 @@
     &__list {
         display: flex;
         position: relative;
-        z-index: 2;
+        gap: 20px;
 
         & > li {
             position: relative;
-            margin-right: 45px;
             height: 100%;
-
-            &:last-child {
-                margin-right: 0;
-            }
+            transition: all 0.5s ease;
 
             &:hover .nav__sub_list {
                 display: block;
@@ -27,16 +25,16 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        color: #efeff5;
+        color: $primary-color;
         text-transform: uppercase;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 1rem;
         text-decoration: none;
         transition: all 0.3s ease 0s;
         position: relative;
 
         &:hover {
-            color: #978be4;
+            color: $secondary-color;
         }
 
         span, &__active span {
@@ -44,11 +42,11 @@
             position: absolute;
             border-radius: 10px;
             top: -5px;
-            z-index: 500;
+            z-index: 30;
         }
 
         span {
-            background: #7668cb;
+            background: $input-primary;
             left: 50%;
             transition: all 0.3s ease 0s;
             transform: translateX(-50%) scale(0);
@@ -60,17 +58,17 @@
         }
 
         &__active {
-            color: #d45f93;
+            color: $tertiary-color;
 
             & span {
                 left: 0;
                 width: 100%;
                 transform: scale(1.0);
-                background: #d45f93;
+                background: $tertiary-color;
             }
 
             &:hover {
-                color: #d45f93;
+                color: $tertiary-color;
 
                 span {
                     transform: scale(1.0);
@@ -79,52 +77,30 @@
         }
 
         &__sub {
-            &:before, &:after {
-                content: '';
-                display: block;
-                width: 10px;
-                height: 2px;
-                background: #efeff5;
+            cursor: default;
+            padding-right: 25px;
+
+            &__arrow {
                 position: absolute;
-                top: 35px;
-                right: -15px;
-                transition: all 0.2s ease;
+                top: 50%;
+                right: 0;
+                height: 20px;
+                transform: translateY(-50%);
+                transition: transform 0.3s ease;
             }
 
-            &:before {
-                transform: rotate(45deg) translate(-4px);
-            }
-
-            &:after {
-                transform: rotate(-45deg) translate(4px);
-            }
-
-            &:hover {
-                &:before, &:after {
-                    background: #978be4;
-                    top: 30px;
-                }
-
-                &:before {
-                    transform: rotate(-45deg) translate(-4px);
-                }
-
-                &:after {
-                    transform: rotate(45deg) translate(4px);
-                }
+            &:hover &__arrow {
+                filter: $filter-secondary-color;
+                transform: translateY(-50%) rotateX(180deg);
             }
         }
 
-        &__active {
-            &:before, &:after {
-                background: #d45f93;
-            }
+        &__active &__sub__arrow {
+            filter: $filter-tertiary-color;
+        }
 
-            &:hover {
-                &:before, &:after {
-                    background: #d45f93;
-                }
-            }
+        &__active:hover &__sub__arrow {
+            filter: $filter-tertiary-color
         }
     }
 
@@ -132,11 +108,11 @@
         position: absolute;
         display: none;
         top: 64px;
-        background: #333;
+        background: $secondary-bg;
         width: 80%;
 
         & > li {
-            border-bottom: 1px solid #000;
+            border-bottom: 1px solid $primary-bg;
 
             &:last-child {
                 border: none;
@@ -154,8 +130,39 @@
             transition: all 0.3s ease;
 
             &:hover {
-                background: #7668cb;
+                background: $input-primary;
             }
+        }
+    }
+}
+
+@include media(lg) {
+    .nav {
+        &__list {
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+
+            & > li {
+                position: relative;
+                height: fit-content;
+                width: 100%;
+
+                &:hover .nav__link__sub {
+                    margin-bottom: 90px;
+                }
+            }
+        }
+
+        &__link {
+            width: 100%;
+            height: 50px;
+        }
+
+        &__sub_list {
+            top: 50px;
+            width: 100%;
         }
     }
 }

@@ -1,17 +1,11 @@
+@import "@/app/variables";
+
 .authButtons {
     position: relative;
     z-index: 2;
-    margin-left: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
-
-    &__icon {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-40%);
-        left: -15px;
-    }
 
     &__btn {
         padding: 7px 12px;
@@ -21,14 +15,14 @@
 
         &__logout {
             padding: 5px 10px;
-            border: 2px solid #efeff5;
+            border: 2px solid $primary-color;
             position: relative;
             background: transparent;
-            color: #efeff5;
+            color: $primary-color;
 
             &:hover {
-                background: #7668cb;
-                border-color: #7668cb;
+                background: $input-primary;
+                border-color: $input-primary;
             }
 
             &__loading {
@@ -37,11 +31,11 @@
         }
 
         &__link {
-            background: #7668cb;
+            background: $input-primary;
             display: block;
 
             &:hover {
-                background: #8c7ede;
+                background: $input-lighter;
             }
 
             &__loading {
@@ -53,5 +47,12 @@
     &__loading {
         cursor: progress;
         border-radius: 15px;
+    }
+}
+
+@include media(lg) {
+    .authButtons {
+        width: 100%;
+        justify-content: center;
     }
 }

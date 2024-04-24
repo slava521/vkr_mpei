@@ -1,3 +1,5 @@
+@import "@/app/variables";
+
 *, *:before, *:after {
     padding: 0;
     margin: 0;
@@ -8,13 +10,9 @@
 html, body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    color: #efeff5;
-    background: #1a1a1f;
-}
-
-body.lock {
-    overflow: hidden;
+    font-size: $main-fs;
+    color: $primary-color;
+    background: $primary-bg;
 }
 
 a {
@@ -24,4 +22,16 @@ a {
 
 ul, ol {
     list-style: none;
+}
+
+@include media(lg) {
+    html, body {
+        font-size: calc($main-fs * 0.85);
+    }
+}
+
+@include media(sm) {
+    html, body {
+        font-size: calc($main-fs * 0.7);
+    }
 }

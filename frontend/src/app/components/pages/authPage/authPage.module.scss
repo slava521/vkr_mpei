@@ -1,8 +1,10 @@
+@import "@/app/variables";
+
 .authPage {
     min-height: 100%;
     height: min-content;
     width: 100%;
-    margin: 20px 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,39 +12,40 @@
     &__body {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         width: 580px;
-        background: #333;
+        background: $secondary-bg;
         border-radius: 7px;
-        box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+    }
+
+    &__gradient {
+        flex: 1 1 auto;
+        min-height: 40px;
+        min-width: 150px;
+        position: relative;
+        background-image: linear-gradient(to right, $tertiary-color, $input-lighter);
     }
 
     &__form {
+        flex: 1 1 auto;
         padding: 40px 30px 20px;
-        background: #333;
+        background: $secondary-bg;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        width: 500px;
+        width: 400px;
+        max-width: 100%;
+        gap: 10px;
 
         &__title {
-            font-size: 24px;
+            font-size: 1.7rem;
             font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        &--left {
-            width: 220px;
-            height: auto;
-            min-height: 100%;
-            position: relative;
-            border-top-left-radius: 7px;
-            border-bottom-left-radius: 7px;
-            background-image: linear-gradient(to right, #d45f93, #8c7ede);
         }
 
         &__link {
             opacity: 0.4;
-            font-size: 14px;
+            font-size: 1rem;
             padding-bottom: 1px;
             margin-left: auto;
             font-weight: 300;
@@ -57,6 +60,27 @@
 
         &__error {
             width: 100%;
+        }
+    }
+}
+
+@include media(md) {
+    .authPage {
+        &__form {
+            padding: 30px 25px 10px;
+
+            &__link {
+                margin-top: 12px;
+            }
+        }
+    }
+}
+@include media(sm) {
+    .authPage {
+        &__form {
+            &__link {
+                margin-top: 8px;
+            }
         }
     }
 }

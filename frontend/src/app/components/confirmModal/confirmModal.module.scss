@@ -1,11 +1,13 @@
+@import "@/app/variables";
+
 .confirmModal {
     &__header {
         padding: 20px;
-        font-size: 20px;
+        font-size: 1.4rem;
     }
 
     &__text {
-        background: #222127;
+        background: $primary-bg-lighter;
         min-height: 70px;
         line-height: 20px;
         padding: 20px;

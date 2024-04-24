@@ -1,29 +1,31 @@
+@import "@/app/variables";
+
 .paginationLinks {
-    border: 1px solid #efeff5;
+    border: 1px solid $primary-color;
     display: flex;
     border-radius: 8px;
     gap: 1px;
-    background-color: #efeff5;
+    background-color: $primary-color;
     overflow: hidden;
     width: max-content;
     cursor: default;
 
     &__link {
         padding: 7px 10px;
-        background-color: #1a1a1f;
+        background-color: $primary-bg;
         transition: all 0.2s ease;
 
         &:hover {
-            background-color: #7668cb;
+            background-color: $input-primary;
         }
 
         &--current {
-            background-color: #7668cb;
+            background-color: $input-primary;
         }
     }
 
     &__disabled {
         padding: 6px 9px;
-        background-color: #1a1a1f;
+        background-color: $primary-bg;
     }
 }

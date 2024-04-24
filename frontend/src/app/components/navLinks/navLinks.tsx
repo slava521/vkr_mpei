@@ -1,6 +1,6 @@
 'use client'
 
-import {FC} from "react";
+import React, {FC} from "react";
 
 import Link from "next/link";
 import {usePathname} from "next/navigation";
@@ -10,7 +10,11 @@ import {LINKS} from "@/app/shared/consts/consts";
 
 import classes from "./navLinks.module.scss";
 
-const NavLinks: FC = () => {
+type Props = {
+    closeMenu: () => void
+}
+
+const NavLinks: FC<Props> = ({closeMenu}) => {
     const pathname = usePathname()
     const [isAuthenticated] = useUserVerify()
 
@@ -19,6 +23,10 @@ const NavLinks: FC = () => {
             <ul className={classes.nav__list}>
                 {LINKS.map(link => {
                     const isCurrentPage = link.mainLink === pathname || link.graphLink === pathname
+                    const headerLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+                        if (!!link.graphLink && isAuthenticated) e.preventDefault()
+                        if (!link.graphLink || !isAuthenticated) closeMenu()
+                    }
 
                     return (
                         <li key={link.mainLink}>
@@ -29,19 +37,31 @@ const NavLinks: FC = () => {
                                     } ${isCurrentPage ? classes.nav__link__active : ''}`
                                 }
                                 href={link.mainLink}
+                                onClick={headerLinkClick}
                             >
                                 {link.name}
                                 <span></span>
+                                {!!link.graphLink && isAuthenticated &&
+                                    <img className={classes.nav__link__sub__arrow} src="/arrow.svg" alt="Стрелка"/>
+                                }
                             </Link>
                             {!!link.graphLink && isAuthenticated && (
                                 <ul className={classes.nav__sub_list}>
                                     <li>
-                                        <Link href={link.mainLink} className={classes.nav__sub_list__link}>
+                                        <Link
+                                            href={link.mainLink}
+                                            className={classes.nav__sub_list__link}
+                                            onClick={closeMenu}
+                                        >
                                             Таблица
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href={link.graphLink} className={classes.nav__sub_list__link}>
+                                        <Link
+                                            href={link.graphLink}
+                                            className={classes.nav__sub_list__link}
+                                            onClick={closeMenu}
+                                        >
                                             Графики
                                         </Link>
                                     </li>

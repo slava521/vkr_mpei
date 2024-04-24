@@ -4,10 +4,10 @@ import React, {FC, useEffect, useMemo, useState} from "react";
 
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
-import Chart from "@/app/components/chart/chart";
 import ErrorMessage from "@/app/components/errorMessage/errorMessage";
 import ParamsInformationModal from "@/app/components/paramsInformationModal/paramsInformationModal";
 import Button from "@/app/components/ui/button/button";
+import Chart from "@/app/components/ui/chart/chart";
 import Checkbox from "@/app/components/ui/checkbox/checkbox";
 import Container from "@/app/components/ui/container/container";
 import Input from "@/app/components/ui/input/input";
@@ -124,7 +124,7 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
                                 <Select name={'param'} options={options} defaultValue={searchWeatherParam as string}/>
                             </div>
                             <Checkbox
-                                label='Построить график посекундно'
+                                label='Вывести все данные за период'
                                 name='every_second'
                                 checked={searchEverySecond === 'on'}
                             />

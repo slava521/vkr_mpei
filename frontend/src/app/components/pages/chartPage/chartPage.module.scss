@@ -1,14 +1,15 @@
+@import "@/app/variables";
+
 .chartPage {
     display: flex;
-    height: 500px;
-    margin-top: 60px;
+    margin-top: 45px;
     gap: 25px;
 
     &__sidebar {
-        width: 30%;
+        width: 350px;
         max-width: 400px;
-        height: 100%;
-        background: #333;
+        height: 500px;
+        background: $secondary-bg;
         border-radius: 6px;
         display: flex;
         flex-direction: column;
@@ -24,7 +25,7 @@
 
         &__text {
             margin-bottom: 20px;
-            font-size: 16px;
+            font-size: 1.15rem;
         }
 
         &__form {
@@ -90,7 +91,6 @@
 
     &__main {
         width: 70%;
-        height: 100%;
 
         &__chart {
             height: 100%;
@@ -100,10 +100,10 @@
                 position: absolute;
                 top: 0;
                 padding: 15px 25px;
-                background: #333;
+                background: $secondary-bg;
                 border-radius: 6px 6px 0 0;
                 font-weight: 500;
-                font-size: 16px;
+                font-size: 1.15rem;
                 transition: top 0.5s ease;
 
                 &__active {
@@ -114,13 +114,123 @@
             &__bg {
                 position: relative;
                 width: 100%;
-                height: 100%;
-                background: #333;
+                height: 500px;
+                background: $secondary-bg;
                 border-radius: 6px;
                 display: flex;
                 flex-direction: column;
                 padding: 15px;
                 z-index: 2;
+            }
+        }
+    }
+}
+
+@include media(lg) {
+    .chartPage {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        gap: 10px;
+
+        &__sidebar {
+            height: 450px;
+
+            &__body {
+            }
+
+            &__text {
+                margin-bottom: 10px;
+            }
+
+            &__form {
+
+                &__param {
+
+                    &__comment {
+                    }
+
+                    & select {
+                        height: 40px;
+                    }
+                }
+
+                &__radio {
+                }
+            }
+
+            &__error {
+            }
+        }
+
+        &__main {
+            width: 100%;
+
+            &__chart {
+
+                &__header {
+
+                    &__active {
+                    }
+                }
+
+                &__bg {
+                    height: 400px;
+                }
+            }
+        }
+    }
+}
+
+@include media(sm) {
+    .chartPage {
+
+        &__sidebar {
+            width: 100%;
+            height: 400px;
+
+            &__form {
+
+                & input[type=datetime-local]::-webkit-calendar-picker-indicator {
+                    margin-left: 10px;
+                }
+
+                &__param {
+
+                    &__comment {
+                    }
+
+                    & select {
+                        height: 36px;
+                    }
+                }
+
+                &__radio {
+                }
+            }
+
+            &__error {
+            }
+        }
+
+        &__main {
+
+            &__chart {
+
+                &__header {
+                    width: 100%;
+
+                    &__active {
+                    }
+                }
+
+                &__header__active + &__bg {
+                    margin-top: 45px;
+                }
+
+                &__bg {
+                    height: 300px;
+                }
             }
         }
     }
