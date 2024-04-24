@@ -37,3 +37,11 @@
         overflow-x: auto;
     }
 }
+
+@include media(lg) {
+    .modal {
+        &__body {
+            min-width: 300px;
+        }
+    }
+}
