@@ -59,10 +59,11 @@ type Props = {
     param: string | null,
     colors: string[],
     width: number,
-    bar?: boolean
+    bar?: boolean,
+    isLoading?: boolean
 }
 
-const Chart: FC<Props> = ({labels, values, param, colors, width, bar}) => {
+const Chart: FC<Props> = ({labels, values, param, colors, width, bar, isLoading}) => {
     const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null)
     const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null)
     const [gradient, setGradient] = useState<CanvasGradient | undefined>(undefined)
@@ -114,6 +115,7 @@ const Chart: FC<Props> = ({labels, values, param, colors, width, bar}) => {
                 ? <Bar data={barData} options={options} className={classes.chart__canvas}/>
                 : <Line data={lineData} options={options} className={classes.chart__canvas}/>
             }
+            {isLoading && <img src='/loading.gif' alt='Загрузка' className={classes.chart__loading}/>}
         </div>
     );
 };

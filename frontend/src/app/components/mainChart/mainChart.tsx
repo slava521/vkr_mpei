@@ -75,6 +75,7 @@ const MainChart: FC<Props> = ({title, endpoint, param, colors}) => {
                     param={param}
                     colors={colors}
                     width={500}
+                    isLoading={isLoading}
                 />
                 <div className={classes.mainChart__nav}>
                     <span>Период:</span>

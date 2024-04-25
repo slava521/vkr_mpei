@@ -164,6 +164,7 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
                                 colors={TEMPERATURE_COLORS}
                                 width={700}
                                 bar={searchParams.get('chartType') === 'bar'}
+                                isLoading={isLoading}
                             />
                         </div>
                     </div>
