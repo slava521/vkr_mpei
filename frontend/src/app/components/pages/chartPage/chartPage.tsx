@@ -13,6 +13,7 @@ import Container from "@/app/components/ui/container/container";
 import Input from "@/app/components/ui/input/input";
 import RadioButton from "@/app/components/ui/radioButton/radioButton";
 import Select from "@/app/components/ui/select/select";
+import {useScrollLock} from "@/app/hooks/useScrollLock";
 import {useUserVerify} from "@/app/hooks/useUserVerify";
 import {TEMPERATURE_COLORS} from "@/app/shared/consts/consts";
 import {Params} from "@/app/shared/types/types";
@@ -60,6 +61,8 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
             replace('/')
         }
     }, [isAuthorized, verifyLoading]);
+
+    useScrollLock(isModalOpened)
 
     if (verifyLoading || !isAuthorized) {
         return <div>Загрузка...</div>

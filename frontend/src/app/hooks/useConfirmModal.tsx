@@ -1,6 +1,7 @@
 import {FC, memo, useMemo, useState} from "react";
 
 import ConfirmModal from "@/app/components/confirmModal/confirmModal";
+import {useScrollLock} from "@/app/hooks/useScrollLock";
 
 type ReturnParams = [
     confirmModal: FC,
@@ -10,6 +11,7 @@ type ReturnParams = [
 export const useConfirmModal = (onConfirm: VoidFunction, text?: string): ReturnParams => {
     const [isModalOpened, setIsModalOpened] = useState(false)
     const [visible, setVisible] = useState(false)
+    useScrollLock(isModalOpened)
 
     const openModal = () => {
         setVisible(true)

@@ -25,7 +25,16 @@
             justify-content: space-between;
 
             &__bg {
+                width: 100vw;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                z-index: 19;
                 opacity: 0;
+                transition: opacity 0.3s ease;
+                position: fixed;
+                background: $primary-bg;
+                pointer-events: none;
             }
         }
 
@@ -80,14 +89,8 @@
                 }
 
                 &--opened + &__bg {
-                    position: fixed;
-                    width: 100vw;
-                    height: 100vh;
-                    top: 0;
-                    left: 0;
-                    z-index: 19;
                     opacity: 0.4;
-                    background: $primary-bg;
+                    pointer-events: auto;
                 }
             }
 

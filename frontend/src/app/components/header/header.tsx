@@ -5,11 +5,13 @@ import {FC, useState} from "react";
 import AuthButtons from "@/app/components/authButtons/authButtons";
 import NavLinks from "@/app/components/navLinks/navLinks";
 import Container from "@/app/components/ui/container/container";
+import {useScrollLock} from "@/app/hooks/useScrollLock";
 
 import classes from "./header.module.scss";
 
 const Header: FC = () => {
     const [isMenuOpened, setIsMenuOpened] = useState(false)
+    useScrollLock(isMenuOpened)
 
     const closeMenu = () => setIsMenuOpened(false)
     const openMenu = () => setIsMenuOpened(true)
