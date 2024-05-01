@@ -58,7 +58,7 @@ const ChartPage: FC<Props> = ({title, params, endpoint}) => {
 
     useEffect(() => {
         if (!isAuthorized && !verifyLoading) {
-            replace('/')
+            replace('/login')
         }
     }, [isAuthorized, verifyLoading]);
 
