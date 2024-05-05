@@ -8,8 +8,8 @@
     justify-content: center;
     align-items: center;
 	padding: 15px 40px;
-    background-color: $input-primary;
-    color: $primary-color;
+    background-color: $input-primary-bg;
+    color: $input-primary-color;
     font-size: 1rem;
     font-weight: 500;
     border: none;
@@ -31,8 +31,8 @@
 
     &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 2px 6px -1px rgba($input-lighter, 0.65);
-        background: $input-lighter;
+        box-shadow: 0 2px 6px -1px rgba($input-lighter-bg, 0.65);
+        background: $input-lighter-bg;
 
         &:active {
             transform: scale(0.99);

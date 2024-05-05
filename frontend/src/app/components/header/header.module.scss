@@ -6,8 +6,8 @@
     left: 0;
     top: 0;
     z-index: 10;
-    background: $primary-bg;
-    border-bottom: 2px solid $primary-bg-lighter;
+    background: var(--primary-bg);
+    border-bottom: 2px solid var(--primary-bg-modified);
 
     &__body {
         position: relative;
@@ -33,7 +33,7 @@
                 opacity: 0;
                 transition: opacity 0.3s ease;
                 position: fixed;
-                background: $primary-bg;
+                background: var(--primary-bg);
                 pointer-events: none;
             }
         }
@@ -46,6 +46,7 @@
 
             img {
                 height: 100%;
+                filter: var(--filter-primary-color);
             }
         }
 
@@ -58,6 +59,7 @@
 
             img {
                 max-height: 100%;
+                filter: var(--filter-primary-color);
             }
         }
     }
@@ -79,7 +81,7 @@
                 gap: 10px;
                 max-width: 230px;
                 width: 100%;
-                background: $primary-bg;
+                background: var(--primary-bg);
                 padding: 30px 20px 100px;
                 transition: all 0.3s ease;
                 overflow-y: auto;

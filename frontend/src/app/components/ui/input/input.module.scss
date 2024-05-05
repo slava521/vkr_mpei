@@ -20,20 +20,20 @@
         width: 100%;
         min-width: 120px;
         border: none;
-        border-bottom: solid 2px rgba($primary-color, 0.25);
+        border-bottom: solid 2px rgba(var(--primary-color-rgb), 0.25);
         background: inherit;
         box-sizing: border-box;
         transition: all 0.3s ease;
         font-weight: 400;
         -webkit-appearance: none;
-        color: $primary-color;
+        color: var(--primary-color);
         display: flex;
         cursor: text;
 
         &[type=datetime-local]::-webkit-calendar-picker-indicator {
             margin-left: 10px;
             cursor: pointer;
-            filter: drop-shadow(0 0 2px $primary-color);
+            filter: drop-shadow(0 0 2px var(--primary-color));
         }
 
         &:last-child {
@@ -41,9 +41,9 @@
         }
 
         &:focus {
-            border-bottom: solid 2px $input-primary;
+            border-bottom: solid 2px $input-primary-bg;
             outline: 0;
-            box-shadow: 0 2px 6px -8px rgba($input-primary, 0.45);
+            box-shadow: 0 2px 6px -8px rgba($input-primary-bg, 0.45);
         }
 
         &:not(:placeholder-shown) {
@@ -56,8 +56,8 @@
         }
 
         &:-webkit-autofill {
-            -webkit-text-fill-color: $primary-color !important;
-            -webkit-box-shadow: inset 0 0 0 30px $secondary-bg !important;
+            -webkit-text-fill-color: var(--primary-color) !important;
+            -webkit-box-shadow: inset 0 0 0 30px var(--secondary-bg) !important;
 
             & + label {
                 transform: translateY(-10px);
@@ -78,10 +78,9 @@
             height: 30px;
             width: 30px;
             margin: auto;
-            opacity: 0.15;
-            fill: $primary-color;
+            opacity: 0.8;
+            filter: var(--filter-primary-color);
             transition: all 0.3s ease;
-            filter: none;
         }
     }
 

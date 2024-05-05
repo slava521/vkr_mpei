@@ -7,7 +7,7 @@
     }
 
     &__text {
-        background: $primary-bg-lighter;
+        background: var(--primary-bg-modified);
         min-height: 70px;
         line-height: 20px;
         padding: 20px;

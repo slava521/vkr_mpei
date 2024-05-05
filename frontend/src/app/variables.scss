@@ -1,21 +1,35 @@
 @use 'sass:map';
 
-$primary-color: #efeff5;
+$primary-color-light: #1a1a1f;
+$primary-color-light-rgb: 26, 26, 31;
+$primary-color-dark: #efeff5;
+$primary-color-dark-rgb: 239, 239, 245;
 $secondary-color: #978be4;
 $tertiary-color: #d45f93;
 
-$input-primary: #7668cb;
-$input-lighter: #8c7ede;
+$input-primary-color: #efeff5;
+$input-primary-bg: #7668cb;
+$input-lighter-bg: #8c7ede;
 
-$primary-bg: #1a1a1f;
-$primary-bg-lighter: #222127;
-$secondary-bg: #333;
+$primary-bg-light: #efeff5;
+$primary-bg-light-darker: #e1e1e1;
+$secondary-bg-light: #c2c2c2;
+$secondary-bg-light-rgb: 194, 194, 194;
+$secondary-bg-light-darker: #a9a9a9;
+
+$primary-bg-dark: #1a1a1f;
+$primary-bg-dark-lighter: #222127;
+$secondary-bg-dark: #333;
+$secondary-bg-dark-rgb: 51, 51, 51;
+$secondary-bg-dark-darker: #1a1a1a;
 
 $error-color: #910040;
 $error-bg: #d35f94;
 
 $black: #000;
 
+$filter-primary-color-light: invert(99%) sepia(0%) saturate(294%) hue-rotate(358deg) brightness(112%) contrast(87%);
+$filter-primary-color-dark: invert(1%) sepia(0%) saturate(294%) hue-rotate(358deg) brightness(112%) contrast(87%);
 $filter-secondary-color: invert(61%) sepia(44%) saturate(736%) hue-rotate(205deg) brightness(89%) contrast(101%);
 $filter-tertiary-color: invert(63%) sepia(88%) saturate(2779%) hue-rotate(298deg) brightness(89%) contrast(85%);
 

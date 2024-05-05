@@ -18,7 +18,7 @@
         position: fixed;
         width: 100%;
         height: 100%;
-        background-color: rgba($secondary-bg, 0.5);
+        background-color: rgba(var(--secondary-bg-rgb), 0.5);
         z-index: 100;
     }
 
@@ -31,8 +31,8 @@
         min-width: 400px;
         max-width: 90vw;
         max-height: 80vh;
-        background-color: $primary-bg;
-        box-shadow: 0 0 10px $primary-bg;
+        background-color: var(--primary-bg);
+        box-shadow: 0 0 10px var(--primary-bg);
         border-radius: 10px;
         overflow-x: auto;
     }

@@ -7,12 +7,38 @@
     box-sizing: border-box;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #{$primary-color-dark};
+        --primary-color-rgb: #{$primary-color-dark-rgb};
+        --primary-bg: #{$primary-bg-dark};
+        --primary-bg-modified: #{$primary-bg-dark-lighter};
+        --secondary-bg: #{$secondary-bg-dark};
+        --secondary-bg-rgb: #{$secondary-bg-dark-rgb};
+        --secondary-bg-darker: #{$secondary-bg-dark-darker};
+        --filter-primary-color: #{$filter-primary-color-dark};
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --primary-color: #{$primary-color-light};
+        --primary-color-rgb: #{$primary-color-light-rgb};
+        --primary-bg: #{$primary-bg-light};
+        --primary-bg-modified: #{$primary-bg-light-darker};
+        --secondary-bg: #{$secondary-bg-light};
+        --secondary-bg-rgb: #{$secondary-bg-light-rgb};
+        --secondary-bg-darker: #{$secondary-bg-light-darker};
+        --filter-primary-color: #{$filter-primary-color-light};
+    }
+}
+
 html, body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
     font-size: $main-fs;
-    color: $primary-color;
-    background: $primary-bg;
+    color: var(--primary-color);
+    background: var(--primary-bg);
 }
 
 a {

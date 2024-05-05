@@ -1,7 +1,7 @@
 @import "@/app/variables";
 
 .footer {
-    background: $primary-bg-lighter;
+    background: var(--primary-bg-modified);
 
     &__body {
         padding: 10px;
@@ -40,12 +40,13 @@
 
             img {
                 width: 100%;
+                filter: var(--filter-primary-color);
             }
         }
 
         &__divider {
             width: 2px;
-            background-color: $primary-color;
+            background-color: var(--primary-color);
         }
     }
 }

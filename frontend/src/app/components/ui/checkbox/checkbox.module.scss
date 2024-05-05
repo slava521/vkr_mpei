@@ -24,9 +24,9 @@
                 display: block;
                 width: 24px;
                 height: 24px;
-                border: 2px solid $input-lighter;
+                border: 2px solid $input-lighter-bg;
                 border-radius: 3px;
-                background: $primary-color;
+                background: $input-primary-color;
                 align-self: flex-start;
                 flex: 0 0 24px;
                 transition: all 0.2s ease 0s;
@@ -52,8 +52,8 @@
         }
 
         &:checked + &__label:before {
-            background: $input-lighter;
-            border-color: $input-lighter;
+            background: $input-lighter-bg;
+            border-color: $input-lighter-bg;
         }
 
         &:checked + &__label:after {

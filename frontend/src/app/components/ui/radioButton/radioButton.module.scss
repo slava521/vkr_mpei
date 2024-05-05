@@ -16,7 +16,7 @@
             align-self: flex-start;
             flex: 0 0 24px;
             height: 24px;
-            background: $primary-color;
+            background: $input-primary-color;
             border-radius: 50%;
         }
 
@@ -27,7 +27,7 @@
             left: 12px;
             width: 16px;
             height: 16px;
-            background: $input-lighter;
+            background: $input-lighter-bg;
             border-radius: 50%;
             transform: translate(-50%, -50%) scale(0);
             transition: all 0.3s ease 0s;

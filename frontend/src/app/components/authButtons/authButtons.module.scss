@@ -15,14 +15,15 @@
 
         &__logout {
             padding: 5px 10px;
-            border: 2px solid $primary-color;
+            border: 2px solid var(--primary-color);
             position: relative;
             background: transparent;
-            color: $primary-color;
+            color: var(--primary-color);
 
             &:hover {
-                background: $input-primary;
-                border-color: $input-primary;
+                color: $input-primary-color;
+                background: $input-primary-bg;
+                border-color: $input-primary-bg;
             }
 
             &__loading {
@@ -31,11 +32,12 @@
         }
 
         &__link {
-            background: $input-primary;
+            color: $input-primary-color;
+            background: $input-primary-bg;
             display: block;
 
             &:hover {
-                background: $input-lighter;
+                background: $input-lighter-bg;
             }
 
             &__loading {
@@ -47,6 +49,13 @@
     &__loading {
         cursor: progress;
         border-radius: 15px;
+    }
+
+    &__icon {
+        img {
+            filter: var(--filter-primary-color);
+            height: 100%;
+        }
     }
 }
 

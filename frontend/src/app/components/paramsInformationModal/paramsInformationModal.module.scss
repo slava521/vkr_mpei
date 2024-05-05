@@ -1,7 +1,7 @@
 @import "@/app/variables";
 
 .paramsInformationModal {
-    background-color: $primary-bg;
+    background-color: var(--primary-bg);
     padding: 20px;
     display: flex;
     flex-direction: column;

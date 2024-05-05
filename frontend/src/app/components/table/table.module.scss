@@ -10,11 +10,11 @@
 
     &__row {
         &:nth-child(odd) {
-            background: $secondary-bg;
+            background: var(--secondary-bg);
         }
 
         &:nth-child(even) {
-            background: $primary-bg-lighter;
+            background: var(--primary-bg-modified);
         }
     }
 
@@ -32,7 +32,7 @@
                 position: absolute;
                 top: 33px;
                 left: 0;
-                background: rgba($black, 0.9);
+                background: var(--secondary-bg-darker);
                 padding: 5px;
                 border-radius: 3px;
                 text-align: left;
@@ -45,7 +45,7 @@
                     width: 0;
                     height: 0;
                     border: 7px solid transparent;
-                    border-bottom: 7px solid rgba($black, 0.9);
+                    border-bottom: 6px solid var(--secondary-bg-darker);
                 }
             }
 
@@ -73,6 +73,7 @@
 
             &__orderBy_img {
                 height: 8px;
+                filter: var(--filter-primary-color);
 
                 &__ascending {
                     transform: rotate(180deg);
