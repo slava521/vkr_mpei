@@ -1,7 +1,8 @@
 'use client'
 
-import {FC, useState} from "react";
+import React, {FC, useState} from "react";
 
+import AppThemeButton from "@/app/components/appThemeButton/appThemeButton";
 import AuthButtons from "@/app/components/authButtons/authButtons";
 import NavLinks from "@/app/components/navLinks/navLinks";
 import Container from "@/app/components/ui/container/container";
@@ -29,10 +30,11 @@ const Header: FC = () => {
                         <NavLinks closeMenu={closeMenu}/>
                         <AuthButtons closeMenu={closeMenu}/>
                     </div>
-                    <div className={classes.header__body__menu__bg} onClick={closeMenu}/>
+                    <AppThemeButton/>
                     <button className={classes.header__body__menu_img} onClick={openMenu}>
                         <img src="/menu.svg" alt="Меню"/>
                     </button>
+                    <div className={classes.header__body__menu__bg} onClick={closeMenu}/>
                 </div>
             </Container>
         </header>

@@ -1,0 +1,11 @@
+.appThemeButton {
+    height: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+
+    img {
+        filter: var(--filter-primary-color);
+        height: 50%;
+    }
+}

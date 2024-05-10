@@ -1,0 +1,20 @@
+@import "../../variables";
+
+:export {
+    primaryColorLight: $primary-color-light;
+    primaryColorLightRgb: $primary-color-light-rgb;
+    primaryBgLight: $primary-bg-light;
+    primaryBgLightDarker: $primary-bg-light-darker;
+    secondaryBgLight: $secondary-bg-light;
+    secondaryBgLightRgb: $secondary-bg-light-rgb;
+    secondaryBgLightDarker: $secondary-bg-light-darker;
+    filterPrimaryColorLight: $filter-primary-color-light;
+    primaryColorDark: $primary-color-dark;
+    primaryColorDarkRgb: $primary-color-dark-rgb;
+    primaryBgDark: $primary-bg-dark;
+    primaryBgDarkLighter: $primary-bg-dark-lighter;
+    secondaryBgDark: $secondary-bg-dark;
+    secondaryBgDarkRgb: $secondary-bg-dark-rgb;
+    secondaryBgDarkDarker: $secondary-bg-dark-darker;
+    filterPrimaryColorDark: $filter-primary-color-dark;
+}
