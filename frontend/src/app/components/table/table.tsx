@@ -74,9 +74,9 @@ const Table: FC<Props> = ({cols, loading, data, contentCount}) => {
                                     />
                                 }
                             </button>
-                            {col.description && <div className={classes.table__col__header__description}>
+                            {col.description && <span className={classes.table__col__header__description}>
                                 {col.description}
-                            </div>}
+                            </span>}
                         </th>
                     ))}
                 </tr>
