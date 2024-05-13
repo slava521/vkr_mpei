@@ -22,7 +22,7 @@ const AppThemeButton = memo(() => {
 
     useEffect(() => {
         if (isDarkMode === 'system') {
-            setImageSource(isDarkMode ? '/darkMode.svg' : '/lightMode.svg')
+            setImageSource(matches ? '/darkMode.svg' : '/lightMode.svg')
         } else if (isDarkMode) {
             setVariable('--primary-color', variables['primaryColorDark'])
             setVariable('--primary-color-rgb', variables['primaryColorDarkRgb'])
@@ -45,7 +45,7 @@ const AppThemeButton = memo(() => {
             setVariable('--filter-primary-color', variables['filterPrimaryColorLight'])
             setImageSource('/lightMode.svg')
         }
-    }, [isDarkMode]);
+    }, [isDarkMode, matches]);
 
     return (
         <button onClick={()=>setIsDarkMode(!isDarkMode)} className={classes.appThemeButton}>
