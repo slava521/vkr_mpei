@@ -1,4 +1,6 @@
-import {memo, useEffect} from "react";
+'use client'
+
+import {memo, useEffect, useState} from "react";
 
 import {useLocalStorage, useMediaQuery} from "usehooks-ts";
 
@@ -12,12 +14,16 @@ const AppThemeButton = memo(() => {
     const matches = useMediaQuery('(prefers-color-scheme: dark)', {
         initializeWithValue: false
     })
-    const [isDarkMode, setIsDarkMode] = useLocalStorage<boolean>('darkMode', matches, {
+    const [isDarkMode, setIsDarkMode] = useLocalStorage<boolean | string>('darkMode', 'system', {
         initializeWithValue: false
     })
 
+    const [imageSource, setImageSource] = useState(isDarkMode ? '/darkMode.svg' : '/lightMode.svg')
+
     useEffect(() => {
-        if (isDarkMode) {
+        if (isDarkMode === 'system') {
+            setImageSource(isDarkMode ? '/darkMode.svg' : '/lightMode.svg')
+        } else if (isDarkMode) {
             setVariable('--primary-color', variables['primaryColorDark'])
             setVariable('--primary-color-rgb', variables['primaryColorDarkRgb'])
             setVariable('--primary-bg', variables['primaryBgDark'])
@@ -26,6 +32,7 @@ const AppThemeButton = memo(() => {
             setVariable('--secondary-bg-rgb', variables['secondaryBgDarkRgb'])
             setVariable('--secondary-bg-darker', variables['secondaryBgDarkDarker'])
             setVariable('--filter-primary-color', variables['filterPrimaryColorDark'])
+            setImageSource('/darkMode.svg')
         }
         else {
             setVariable('--primary-color', variables['primaryColorLight'])
@@ -36,12 +43,13 @@ const AppThemeButton = memo(() => {
             setVariable('--secondary-bg-rgb', variables['secondaryBgLightRgb'])
             setVariable('--secondary-bg-darker', variables['secondaryBgLightDarker'])
             setVariable('--filter-primary-color', variables['filterPrimaryColorLight'])
+            setImageSource('/lightMode.svg')
         }
     }, [isDarkMode]);
 
     return (
         <button onClick={()=>setIsDarkMode(!isDarkMode)} className={classes.appThemeButton}>
-            <img src={isDarkMode ? '/darkMode.svg' : '/lightMode.svg'} alt=""/>
+            <img src={imageSource} alt=""/>
         </button>
     );
 });
