@@ -1,6 +1,5 @@
 import base64
 import csv
-import io
 import os
 from datetime import datetime
 
@@ -123,7 +122,7 @@ def chart_values(model, allowed_params, request, **kwargs):
 def download_csv_data(request, model, filepath):
     query_set = date_filter(request, model)
     headers = [str(data.name) for data in query_set[0]._meta.fields]
-    with open(filepath, 'w+') as file:
+    with open(filepath, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(headers)
         for obj in query_set:
