@@ -69,14 +69,16 @@ const MainChart: FC<Props> = ({title, endpoint, param, colors}) => {
         <div className={classes.mainChart}>
             <h3 className={classes.mainChart__title}>{title}</h3>
             <div className={classes.mainChart__bg}>
-                <Chart
-                    labels={chartData?.labels || []}
-                    values={chartData?.values || []}
-                    param={param}
-                    colors={colors}
-                    width={500}
-                    isLoading={isLoading}
-                />
+                <div className={classes.mainChart__chart}>
+                    <Chart
+                        labels={chartData?.labels || []}
+                        values={chartData?.values || []}
+                        param={param}
+                        colors={colors}
+                        width={500}
+                        isLoading={isLoading}
+                    />
+                </div>
                 <div className={classes.mainChart__nav}>
                     <span>Период:</span>
                     {links.map(link => {
